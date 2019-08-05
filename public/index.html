@@ -1,17 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
+    <link rel="stylesheet" href="./css/layui.css" />
     <title>vue-threejs</title>
   </head>
   <body>
     <noscript>
-      <strong>We're sorry but vue-threejs doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+      <strong
+        >We're sorry but vue-threejs doesn't work properly without JavaScript
+        enabled. Please enable it to continue.</strong
+      >
     </noscript>
     <div id="app"></div>
+
+    <script src="js/lib/layui.all.js"></script>
+
+    <% if (htmlWebpackPlugin.options.env === 'dev') {%>
+    <script src="js/lib/stats.min.js"></script>
+    <script src="js/lib/dat.gui.min.js"></script>
+    <% } %>
     <!-- built files will be auto injected -->
   </body>
 </html>
