@@ -5,8 +5,9 @@ import Detector from './utils/detector'
 import Config from './config'
 
 class Main extends BaseThree {
-  constructor(container) {
+  constructor(container, show) {
     super(container)
+    this.show = show
     this.initEvent()
     this.loadAllObjs()
     this.timer = null // 区分单击和双击事件的关键
@@ -22,17 +23,8 @@ class Main extends BaseThree {
         return
       } else {
         this.timer = setTimeout(() => {
-          layer.open({
-            content: `你选中了：${targetObj.object.parent.name || targetObj.object.name}`,
-            title: '物品信息',
-            offset: 'rt',
-            // offset: position,
-            // time: 1000, // 自动关闭
-            anim: 1, // 不使用进入动画
-            // isOutAnim: false, // 不使用关闭动画
-            shade: 0, // 不使用遮罩
-            end: () => (this.timer = null)
-          })
+          // TODO: this.timer 处理
+          this.show()
         }, 200)
       }
     }
@@ -249,12 +241,12 @@ class Main extends BaseThree {
   }
 }
 
-function init() {
+function init(show) {
   if (!Detector.webgl) {
     alert('您的浏览器不支持 WebGL,请使用最新版本的 Chrome 浏览器')
   } else {
     window.devicePixelRatio && (Config.dpr = window.devicePixelRatio)
-    new Main(document.getElementById('three-world'))
+    new Main(document.getElementById('three-world'), show)
   }
 }
 

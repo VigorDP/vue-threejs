@@ -1,16 +1,11 @@
 import * as THREE from 'three'
 import TWEEN from 'tween.js'
-import {
-  Modal
-} from 'ant-design-vue'
-
+import { Modal } from 'ant-design-vue'
 import Renderer from './renderer' // 初始化渲染器(paint、shadow、resize、dpr)
 import Camera from './camera' // 初始化相机(init、resize、position change)
 import Light from './light' // 给场景添加光源(环境光、方向光、点光、半球光)
 import OrbitControls from './orbitControls'
-import {
-  Sky
-} from './sky'
+import { Sky } from './sky'
 import Router from './router'
 import FBX from '../loaders/fbx/fbx'
 import STL from '../loaders/stl/stl'
@@ -42,6 +37,7 @@ const canLoadChildName = [
 
 // __ENV__ === 'dev' && (Config.isDev = true)
 
+const modal = Modal.info()
 export default class BaseThree {
   constructor(container) {
     this.container = container
@@ -173,17 +169,11 @@ export default class BaseThree {
     this.raycaster = new THREE.Raycaster()
   }
   loadObj(config) {
-    const {
-      path,
-      scale,
-      level
-    } = config
+    const { path, scale, level } = config
     return new OBJ(this).load(path, scale, level)
   }
   loadFbx(config) {
-    const {
-      path
-    } = config
+    const { path } = config
     return new FBX(this).load(path)
   }
   hideOrShowAllObj(show, level) {
@@ -198,12 +188,9 @@ export default class BaseThree {
     })
   }
   showMessage() {
-    Modal.info({
+    modal.update({
       title: '交互说明',
-      content: `1、单击选中物体;
-      2、双击加载物体进入下一级;
-      3、鼠标滚轮点击返回上一级;`,
-      okText: '知道了'
+      content: '1、单击选中物体;2、双击加载物体进入下一级;3、鼠标滚轮点击返回上一级;'
     })
   }
   showObjByLevel(level) {
@@ -235,7 +222,7 @@ export default class BaseThree {
   }
   //设置模型的每个部位都可以投影
   setCastShadowAndReceiveShadow(obj) {
-    obj.traverse(function (child) {
+    obj.traverse(function(child) {
       if (child.isMesh) {
         child.castShadow = true
         child.receiveShadow = true
@@ -249,11 +236,7 @@ export default class BaseThree {
     const vector1 = point.project(this.camera.threeCamera)
     return [vector1.x * halfWidth + halfWidth, -vector1.y * halfHeight + halfHeight]
   }
-  modifyEnviroment({
-    cameraPosition,
-    ambientLightColor,
-    reset = false
-  }) {
+  modifyEnviroment({ cameraPosition, ambientLightColor, reset = false }) {
     if (reset) {
       this.camera.threeCamera.position.set(Config.camera.posX, Config.camera.posY, Config.camera.posZ)
       this.light.ambientLight.color.set(Config.ambientLight.color)
@@ -264,7 +247,8 @@ export default class BaseThree {
   }
   positionAnimate(obj, targetPosition, i) {
     new TWEEN.Tween(obj.position)
-      .to({
+      .to(
+        {
           x: targetPosition[0],
           y: targetPosition[1],
           z: targetPosition[2]
@@ -277,7 +261,8 @@ export default class BaseThree {
   }
   scaleAnimate(obj, targetScale, i) {
     new TWEEN.Tween(obj.scale)
-      .to({
+      .to(
+        {
           x: targetScale[0],
           y: targetScale[1],
           z: targetScale[2]

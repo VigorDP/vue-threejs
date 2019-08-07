@@ -1,7 +1,4 @@
-import {
-  MTLLoader,
-  OBJLoader
-} from 'three-obj-mtl-loader'
+import { MTLLoader, OBJLoader } from 'three-obj-mtl-loader'
 import Config from '../../config'
 
 export default class OBJ {

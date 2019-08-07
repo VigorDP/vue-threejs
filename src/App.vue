@@ -1,23 +1,23 @@
 <template>
-  <div id="app">
+  <div id="root">
     <ThreeWorld />
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-import ThreeWorld from "./components/three-world/ThreeWorld.vue";
+import ThreeWorld from './components/three-world/ThreeWorld.vue'
 
 export default {
-  name: "app",
+  name: 'root',
   components: {
     ThreeWorld
   }
-};
+}
 </script>
 
 <style>
-#app {
+#root {
   margin: 0;
   padding: 0;
 }

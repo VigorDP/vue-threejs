@@ -1,19 +1,10 @@
 import VueRouter from 'vue-router'
+import Drawer from './components/drawer/index.vue'
 
-const Foo = {
-  template: '<div>foo</div>'
-}
-const Bar = {
-  template: '<div>bar</div>'
-}
-
-const routes = [{
-    path: '/foo',
-    component: Foo
-  },
+const routes = [
   {
-    path: '/bar',
-    component: Bar
+    path: '/',
+    component: Drawer
   }
 ]
 
