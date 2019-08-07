@@ -30,7 +30,8 @@
     "XMLHttpRequest": false,
     "alert": true,
     "pit": false,
-    "Stats": true
+    "Stats": true,
+    "VUE_APP_ENV": true
   },
 
   "parser": "babel-eslint",

@@ -1,16 +1,36 @@
 import BaseThree from './core/BaseThree'
 import Detector from './utils/detector'
-// import { throttle } from 'throttle-debounce'
+import { Modal } from 'ant-design-vue'
+import emitter from './core/event-emitter'
 // 全局配置
 import Config from './config'
+const modal = Modal.info()
 
-class Main extends BaseThree {
-  constructor(container, show) {
+export default class Main extends BaseThree {
+  constructor(container) {
     super(container)
-    this.show = show
     this.initEvent()
+    this.showWelComeMessage()
     this.loadAllObjs()
     this.timer = null // 区分单击和双击事件的关键
+    if (!Detector.webgl) {
+      alert('您的浏览器不支持 WebGL,请使用最新版本的 Chrome 浏览器')
+    }
+    Config.dpr = window.devicePixelRatio
+  }
+
+  showWelComeMessage() {
+    modal.update({
+      title: '交互说明',
+      content: `1、单击选中物体;&nbsp;
+      2、双击加载物体进入下一级;&nbsp;
+      3、鼠标滚轮点击返回上一级;&nbsp;
+      `,
+      maskClosable: true,
+      okText: '知道了',
+      centered: true,
+      onOk: () => modal.destroy()
+    })
   }
 
   showObjInfo(event) {
@@ -23,8 +43,8 @@ class Main extends BaseThree {
         return
       } else {
         this.timer = setTimeout(() => {
-          // TODO: this.timer 处理
-          this.show()
+          emitter.emit('show-building', targetObj.object.parent)
+          this.timer = null
         }, 200)
       }
     }
@@ -154,7 +174,6 @@ class Main extends BaseThree {
     })
     // 2、加载地面
     this.loadObj(Config.obj.group_road_1).then(obj => {
-      this.showMessage()
       Config.isDev && this.initGUI(obj)
       this.setCastShadowAndReceiveShadow(obj)
     })
@@ -199,6 +218,8 @@ class Main extends BaseThree {
       obj.children[1].name = 'barrier_gate_out_1'
       obj.children[4].name = 'barrier_gate_in_1'
       obj.position.set(24, 5, 188)
+      this.mixer = obj.mixer = new THREE.AnimationMixer(obj)
+      this.mixer.clipAction(obj.animations[0]).play()
     })
     // 7、加载车辆出入门禁-正方向门禁，无动画
     this.loadObj(Config.obj.group_barrier_gate_obj).then(obj => {
@@ -240,14 +261,3 @@ class Main extends BaseThree {
     })
   }
 }
-
-function init(show) {
-  if (!Detector.webgl) {
-    alert('您的浏览器不支持 WebGL,请使用最新版本的 Chrome 浏览器')
-  } else {
-    window.devicePixelRatio && (Config.dpr = window.devicePixelRatio)
-    new Main(document.getElementById('three-world'), show)
-  }
-}
-
-export default init

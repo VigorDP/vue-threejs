@@ -1,7 +1,7 @@
 <template>
   <div id="root">
     <ThreeWorld />
-    <router-view></router-view>
+    <!-- <router-view></router-view> -->
   </div>
 </template>
 

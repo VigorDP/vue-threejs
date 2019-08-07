@@ -1,6 +1,5 @@
 import * as THREE from 'three'
 import TWEEN from 'tween.js'
-import { Modal } from 'ant-design-vue'
 import Renderer from './renderer' // 初始化渲染器(paint、shadow、resize、dpr)
 import Camera from './camera' // 初始化相机(init、resize、position change)
 import Light from './light' // 给场景添加光源(环境光、方向光、点光、半球光)
@@ -34,10 +33,7 @@ const canLoadChildName = [
   'building', // 普通建筑物
   'floor' // 楼层
 ]
-
-// __ENV__ === 'dev' && (Config.isDev = true)
-
-const modal = Modal.info()
+process.env.VUE_APP_ENV === 'dev' && (Config.isDev = true)
 export default class BaseThree {
   constructor(container) {
     this.container = container
@@ -187,12 +183,7 @@ export default class BaseThree {
       }
     })
   }
-  showMessage() {
-    modal.update({
-      title: '交互说明',
-      content: '1、单击选中物体;2、双击加载物体进入下一级;3、鼠标滚轮点击返回上一级;'
-    })
-  }
+
   showObjByLevel(level) {
     this.hideOrShowAllObj(false)
     this.hideOrShowAllObj(true, level)

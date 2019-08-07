@@ -1,40 +1,43 @@
 <template>
   <div>
     <div id="three-world"></div>
-    <a-button type="primary" @click="showDrawer">Open</a-button>
     <a-drawer
-      title="Basic Drawer"
+      :title="title"
       placement="right"
-      :closable="false"
+      :mask="false"
+      wrapClassName="transparent"
       @close="onClose"
       :visible="visible"
     >
-      <p>Some contents...</p>
-      <p>Some contents...</p>
-      <p>Some contents...</p>
+      <p>{{content}}</p>
     </a-drawer>
   </div>
 </template>
 
 <script>
 import Core from './index'
-
+import { get, post } from '../../common/api'
+import emitter from './core/event-emitter'
 export default {
   name: 'ThreeWorld',
-  props: {
-    msg: String
-  },
   mounted() {
-    Core(this.showDrawer)
+    new Core(document.getElementById('three-world'))
+    emitter.on('show-building', obj => {
+      this.showDrawer(obj)
+    })
   },
   data() {
     return {
-      visible: false
+      visible: false,
+      title: '',
+      content: ''
     }
   },
   methods: {
-    showDrawer() {
-      this.visible = true
+    showDrawer(obj) {
+      this.visible = !this.visible
+      this.title = obj.name || ''
+      get('topics').then(data => (this.content = data.data[0].content))
     },
     onClose() {
       this.visible = false
@@ -44,12 +47,14 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="scss">
 #three-world {
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
+}
+.transparent {
 }
 </style>
