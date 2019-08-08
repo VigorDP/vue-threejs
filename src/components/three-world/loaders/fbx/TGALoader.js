@@ -4,12 +4,12 @@
  * @author takahirox / https://github.com/takahirox/
  */
 import * as THREE from 'three'
-THREE.TGALoader = function(manager) {
+const TGALoader = function(manager) {
   this.manager = manager !== undefined ? manager : THREE.DefaultLoadingManager
 }
 
-THREE.TGALoader.prototype = {
-  constructor: THREE.TGALoader,
+TGALoader.prototype = {
+  constructor: TGALoader,
 
   load: function(url, onLoad, onProgress, onError) {
     var scope = this
@@ -455,3 +455,4 @@ THREE.TGALoader.prototype = {
     return this
   }
 }
+export { TGALoader }

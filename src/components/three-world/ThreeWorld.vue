@@ -2,9 +2,9 @@
   <div>
     <div id="three-world"></div>
     <a-drawer
-      :title="title"
       placement="right"
       :mask="false"
+      :title="title"
       wrapClassName="transparent"
       @close="onClose"
       :visible="visible"
@@ -35,8 +35,15 @@ export default {
   },
   methods: {
     showDrawer(obj) {
-      this.visible = !this.visible
-      this.title = obj.name || ''
+      if (this.title === obj.name) {
+        this.visible = false
+        setTimeout(() => {
+          this.title = ''
+        }, 400)
+      } else {
+        this.visible = true
+        this.title = obj.name || ''
+      }
       get('topics').then(data => (this.content = data.data[0].content))
     },
     onClose() {

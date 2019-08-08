@@ -169,8 +169,8 @@ export default class BaseThree {
     return new OBJ(this).load(path, scale, level)
   }
   loadFbx(config) {
-    const { path } = config
-    return new FBX(this).load(path)
+    const { path, level } = config
+    return new FBX(this).load(path, level)
   }
   hideOrShowAllObj(show, level) {
     this.scene.traverse(child => {

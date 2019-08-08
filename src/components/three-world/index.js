@@ -218,8 +218,6 @@ export default class Main extends BaseThree {
       obj.children[1].name = 'barrier_gate_out_1'
       obj.children[4].name = 'barrier_gate_in_1'
       obj.position.set(24, 5, 188)
-      this.mixer = obj.mixer = new THREE.AnimationMixer(obj)
-      this.mixer.clipAction(obj.animations[0]).play()
     })
     // 7、加载车辆出入门禁-正方向门禁，无动画
     this.loadObj(Config.obj.group_barrier_gate_obj).then(obj => {

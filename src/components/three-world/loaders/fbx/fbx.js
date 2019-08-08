@@ -7,10 +7,11 @@ export default class FBX {
     this.self = app
     this.loader = new FBXLoader()
   }
-  load(path) {
+  load(path, level) {
     return new Promise(res => {
       this.loader.load(path, obj => {
         obj.scale.set(Config.obj.globalScale, Config.obj.globalScale, Config.obj.globalScale)
+        obj.userData.level = level
         this.self.setCastShadowAndReceiveShadow(obj)
         this.mixer = obj.mixer = new THREE.AnimationMixer(obj)
         this.mixer.clipAction(obj.animations[0]).play()
