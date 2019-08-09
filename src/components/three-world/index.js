@@ -59,8 +59,12 @@ export default class Main extends BaseThree {
     if (targetObj && this.canLoadChild(targetObjName)) {
       this.hideOrShowAllObj(false)
       // 已加载过
-      if (window.__HMF__[targetObjName]) {
-        window.__HMF__[targetObjName].visible = true
+      if (window.__HMF__[Config.obj[targetObjName].path]) {
+        window.__HMF__[Config.obj[targetObjName].path].visible = true
+        this.modifyEnviroment({
+          cameraPosition: [150, 150, 500],
+          ambientLightColor: 0xe6e6e6
+        })
         const parentRoute = this.router.getLastChild()
         if (parentRoute) {
           this.router.push({

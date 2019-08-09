@@ -204,7 +204,7 @@ export default class BaseThree {
   canShowInfoPanel(name) {
     return canShowObjName.some(item => name.startsWith(item))
   }
-  canLoadChild(name) {
+  canLoadChild(name = '') {
     return canLoadChildName.some(item => name.startsWith(item))
   }
   initGUI(obj) {
