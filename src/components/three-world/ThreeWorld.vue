@@ -25,6 +25,9 @@ export default {
     emitter.on('show-building', obj => {
       this.showDrawer(obj)
     })
+    emitter.on('hide-all-infoPanel', _ => {
+      this.visible = false
+    })
   },
   data() {
     return {

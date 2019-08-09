@@ -43,7 +43,7 @@ export default class Main extends BaseThree {
         return
       } else {
         this.timer = setTimeout(() => {
-          emitter.emit('show-building', targetObj.object.parent)
+          emitter.emit('show-building', targetObj.object.parent.name ? targetObj.object.parent : targetObj.object)
           this.timer = null
         }, 200)
       }
@@ -53,6 +53,7 @@ export default class Main extends BaseThree {
   enterObj(event) {
     clearTimeout(this.timer)
     this.timer = null
+    emitter.emit('hide-all-infoPanel')
     const targetObj = this.getFirstIntersectObj(event)
     const targetObjName = targetObj && targetObj.object.parent.userData.childName
     if (targetObj && this.canLoadChild(targetObjName)) {
@@ -98,6 +99,7 @@ export default class Main extends BaseThree {
           // 中击事件,即点击鼠标滚轮
           const popRoute = this.router.pop()
           popRoute && this.showObjByLevel(popRoute.parent)
+          emitter.emit('hide-all-infoPanel')
           popRoute.parent === 'one' &&
             this.modifyEnviroment({
               reset: true
