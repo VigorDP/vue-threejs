@@ -47,7 +47,7 @@ export default {
         this.visible = true
         this.title = obj.name || ''
       }
-      get('topics').then(data => (this.content = data.data[0].content))
+      get('topics').then(data => (this.content = data.data[parseInt(Math.random() * data.data.length)].content))
     },
     onClose() {
       this.visible = false
