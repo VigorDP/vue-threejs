@@ -4,7 +4,6 @@ import { Modal } from 'ant-design-vue'
 import emitter from './core/event-emitter'
 // 全局配置
 import Config from './config'
-const modal = Modal.info()
 
 export default class Main extends BaseThree {
   constructor(container) {
@@ -20,17 +19,18 @@ export default class Main extends BaseThree {
   }
 
   showWelComeMessage() {
-    modal.update({
-      title: '交互说明',
-      content: `1、单击选中物体;&nbsp;
-      2、双击加载物体进入下一级;&nbsp;
-      3、鼠标滚轮点击返回上一级;&nbsp;
-      `,
-      maskClosable: true,
-      okText: '知道了',
-      centered: true,
-      onOk: () => modal.destroy()
-    })
+    if (window.localStorage.getItem('neverShowWelcomeMessage') !== 'true') {
+      Modal.info({
+        title: '交互说明',
+        content: '1、单击选中物体;\n\r2、双击加载物体进入下一级;\n\r3、鼠标滚轮点击返回上一级;',
+        maskClosable: true,
+        okText: '知道了',
+        centered: true,
+        onOk: () => {
+          window.localStorage.setItem('neverShowWelcomeMessage', true)
+        }
+      })
+    }
   }
 
   showObjInfo(event) {
@@ -214,7 +214,7 @@ export default class Main extends BaseThree {
     })
     // 6、加载车辆出入门禁-正方向门禁,有动画"
     this.loadFbx(Config.obj.group_barrier_gate_fbx).then(obj => {
-      obj.name = ''
+      obj.name = 'barrier_gate'
       obj.children[1].name = 'barrier_gate_out_1'
       obj.children[4].name = 'barrier_gate_in_1'
       obj.position.set(24, 5, 188)
