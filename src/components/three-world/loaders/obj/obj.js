@@ -29,7 +29,7 @@ export default class OBJ {
           xhr => {
             if (xhr.lengthComputable) {
               var percentComplete = (xhr.loaded / xhr.total) * 100
-              console.log('loading...', percentComplete.toFixed(1))
+              // console.log('loading...', percentComplete.toFixed(1))
             }
           }
         )

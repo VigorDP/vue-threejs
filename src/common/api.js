@@ -34,6 +34,7 @@ function request(method, url, options = {}) {
     ])
   }
   return promise.catch(e => {
+    console.log('fetch error =>', e)
     alert('网络不太好，请稍后重试！')
   })
 }
