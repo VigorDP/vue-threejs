@@ -5,58 +5,41 @@ export default {
   obj: {
     globalScale: 0.2,
     // 一级场景所需物品
-    group_road_1: {
-      path: '/3d/one/group_road_1/group_road_1',
+    layout: {
+      path: '/3d/one/layout/layout',
       level: 'one'
     },
     group_shop_1: {
-      path: '/3d/one/group_shop_1/group_shop_1',
+      path: '/3d/one/shop/shop1',
       level: 'one'
     },
-    group_parking_1: {
-      path: '/3d/one/group_parking_1/group_parking_1',
+    group_building_manage: {
+      path: '/3d/one/building_manage/building_manage',
       level: 'one'
     },
-    group_charging_pile_1: {
-      path: '/3d/one/group_charging_pile_1/group_charging_pile_1',
+    group_building_relic: {
+      path: '/3d/one/building_relic/building_relic',
       level: 'one'
     },
-    group_build_out_1: {
-      path: '/3d/one/group_build_out_1/group_build_out_1',
+    group_high_building_num7: {
+      path: '/3d/one/high_building_num7/high_building_num7',
       level: 'one',
       childName: 'building'
     },
-    group_villa_1: {
-      path: '/3d/one/group_villa_1/group_villa_1',
-      level: 'one'
+    group_high_building_num8: {
+      path: '/3d/one/high_building_num8/high_building_num8',
+      level: 'one',
+      childName: 'building'
     },
-    group_camera_1: {
-      path: '/3d/one/group_camera_1/group_camera_1',
-      level: 'one'
+    group_low_building1: {
+      path: '/3d/one/low_building1/low_building1',
+      level: 'one',
+      childName: 'building'
     },
-    group_round_camera_1: {
-      path: '/3d/one/group_round_camera_1/group_round_camera_1',
-      level: 'one'
-    },
-    group_barrier_gate_obj: {
-      path: '/3d/one/group_barrier_gate_obj/barrier_gate_obj_1',
-      level: 'one'
-    },
-    group_barrier_gate_fbx: {
-      path: '/3d/one/group_barrier_gate_fbx/barrier_gate_fbx_1.FBX',
-      level: 'one'
-    },
-    group_sign_1: {
-      path: '/3d/one/group_sign_1/group_sign_1',
-      level: 'one'
-    },
-    RFID_1: {
-      path: '/3d/one/RFID_1/RFID_1',
-      level: 'one'
-    },
-    water_obj: {
-      path: '/3d/one/water_obj/water_obj',
-      level: 'one'
+    group_low_building2: {
+      path: '/3d/one/low_building2/low_building2',
+      level: 'one',
+      childName: 'building'
     },
     // 二级场景所需物品
     building: {
