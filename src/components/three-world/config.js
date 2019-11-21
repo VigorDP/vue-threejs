@@ -69,8 +69,8 @@ export default {
     far: 1000,
     aspect: 1,
     posX: 0,
-    posY: 100,
-    posZ: 500
+    posY: 200,
+    posZ: 300
   },
   controls: {
     autoRotate: false,
@@ -94,7 +94,7 @@ export default {
   },
   ambientLight: {
     enabled: true,
-    color: 0x412e2e
+    color: 0x847171
   },
   spotLight: {
     enabled: true,

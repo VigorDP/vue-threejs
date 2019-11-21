@@ -4,7 +4,9 @@ import Renderer from './renderer' // 初始化渲染器(paint、shadow、resize�
 import Camera from './camera' // 初始化相机(init、resize、position change)
 import Light from './light' // 给场景添加光源(环境光、方向光、点光、半球光)
 import OrbitControls from './orbitControls'
-import { Sky } from './sky'
+import {
+  Sky
+} from './sky'
 import Router from './router'
 import FBX from '../loaders/fbx/fbx'
 import STL from '../loaders/stl/stl'
@@ -17,12 +19,12 @@ import DatGUI from '../utils/datGUI'
 import Config from '../config'
 
 const canShowObjName = [
-  'building', // 普通建筑物
-  'villa', // 别墅
+  'building_manage', // 普通建筑物
+  'building_relic', // 别墅
   'floor_common', // 楼层
   'room', //房间
-  'parking', // 停车场
-  'barrier_gate_out', // 出口道闸
+  'building_high_', // 停车场
+  'building_low_', // 出口道闸
   'barrier_gate_in', // 入口道闸
   'charging_pile', // 充电桩
   'camera', // 摄像头
@@ -165,11 +167,18 @@ export default class BaseThree {
     this.raycaster = new THREE.Raycaster()
   }
   loadObj(config) {
-    const { path, scale, level } = config
+    const {
+      path,
+      scale,
+      level
+    } = config
     return new OBJ(this).load(path, scale, level)
   }
   loadFbx(config) {
-    const { path, level } = config
+    const {
+      path,
+      level
+    } = config
     return new FBX(this).load(path, level)
   }
   hideOrShowAllObj(show, level) {
@@ -213,7 +222,7 @@ export default class BaseThree {
   }
   //设置模型的每个部位都可以投影
   setCastShadowAndReceiveShadow(obj) {
-    obj.traverse(function(child) {
+    obj.traverse(function (child) {
       if (child.isMesh) {
         child.castShadow = true
         child.receiveShadow = true
@@ -227,7 +236,11 @@ export default class BaseThree {
     const vector1 = point.project(this.camera.threeCamera)
     return [vector1.x * halfWidth + halfWidth, -vector1.y * halfHeight + halfHeight]
   }
-  modifyEnviroment({ cameraPosition, ambientLightColor, reset = false }) {
+  modifyEnviroment({
+    cameraPosition,
+    ambientLightColor,
+    reset = false
+  }) {
     if (reset) {
       this.camera.threeCamera.position.set(Config.camera.posX, Config.camera.posY, Config.camera.posZ)
       this.light.ambientLight.color.set(Config.ambientLight.color)
@@ -238,8 +251,7 @@ export default class BaseThree {
   }
   positionAnimate(obj, targetPosition, i) {
     new TWEEN.Tween(obj.position)
-      .to(
-        {
+      .to({
           x: targetPosition[0],
           y: targetPosition[1],
           z: targetPosition[2]
@@ -252,8 +264,7 @@ export default class BaseThree {
   }
   scaleAnimate(obj, targetScale, i) {
     new TWEEN.Tween(obj.scale)
-      .to(
-        {
+      .to({
           x: targetScale[0],
           y: targetScale[1],
           z: targetScale[2]

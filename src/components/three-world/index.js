@@ -118,65 +118,67 @@ export default class Main extends BaseThree {
     // 1、加载布局
     this.loadObj(Config.obj.layout).then(obj => {
       obj.position.set(0, -400, 0)
-      const position = [0, 0, 0]
+      const position = [13, 0, 0]
       this.positionAnimate(obj, position, 0)
+    })
+    // 2、加载物业服务中心
+    this.loadObj(Config.obj.group_building_manage).then(obj => {
+      const position = [9, 0, -90]
+      this.positionAnimate(obj, position, 0)
+      obj.name = `building_manage`
+    })
+    // 3、加载建筑-红色矮
+    this.loadObj(Config.obj.group_building_relic).then(obj => {
+      obj.position.set(0, -400, 0)
+      const position = [13, 0, -40]
+      this.positionAnimate(obj, position, 0)
+      obj.name = `building_relic`
+    })
+    // 4、加载建筑 - 白色高1(最右边)
+    this.loadObj(Config.obj.group_high_building_num7).then(obj => {
+      obj.position.set(78, -400, -40)
+      const position = [78, 0, -40]
+      this.positionAnimate(obj, position, 0)
+      obj.name = `building_high_1`
+    })
+    // 5、加载建筑-白色高2
+    this.loadObj(Config.obj.group_high_building_num8).then(obj => {
+      obj.position.set(40, -400, 50)
+      const position = [40, 0, 50]
+      this.positionAnimate(obj, position, 0)
+      obj.name = `building_high_2`
+    })
+    // 6、加载建筑-红色高1
+    this.loadObj(Config.obj.group_low_building1).then(obj => {
+      obj.position.set(-180, -400, 50)
+      const position = [-180, 0, 50]
+      this.positionAnimate(obj, position, 0)
+      obj.name = `building_low_1`
 
       // 左下角建筑物群
-      // for (let index = 1; index < 4; index++) {
-      //   const cloneObj = obj.clone()
-      //   cloneObj.name = `building_${index + 1}`
-      //   cloneObj.position.set(-138 + index * 40, -400, 148.5)
-      //   const position = [-138 + index * 40, 0, 148.5]
-      //   this.positionAnimate(cloneObj, position, index)
-      //   this.scene.add(cloneObj)
-      // }
+      for (let index = 1; index < 3; index++) {
+        const cloneObj = obj.clone()
+        cloneObj.name = `building_low_${index + 1}`
+        cloneObj.position.set(-180, -400, 50 - index * 70)
+        const position = [-180, 0, 50 - index * 70]
+        this.positionAnimate(cloneObj, position, index)
+        this.scene.add(cloneObj)
+      }
     })
-    // 2、加载商铺
-    this.loadObj(Config.obj.group_shop_1).then(obj => {
-      Config.isDev && this.initGUI(obj)
-      this.setCastShadowAndReceiveShadow(obj)
-    })
-    // 加载建筑-白色矮
-    this.loadObj(Config.obj.group_building_manage).then(obj => {
-      obj.position.set(-138, -400, 148.5)
-      const position = [-138, 0, 148.5]
-      this.positionAnimate(obj, position, 0)
-      obj.name = `building_1`
-    })
-    // 加载建筑-红色矮
-    this.loadObj(Config.obj.group_building_relic).then(obj => {
-      obj.position.set(-138, -400, 148.5)
-      const position = [-138, 0, 148.5]
-      this.positionAnimate(obj, position, 0)
-      obj.name = `building_1`
-    })
-    // 加载建筑-白色高1
-    this.loadObj(Config.obj.group_high_building_num7).then(obj => {
-      obj.position.set(-138, -400, 148.5)
-      const position = [-138, 0, 148.5]
-      this.positionAnimate(obj, position, 0)
-      obj.name = `building_1`
-    })
-    // 加载建筑-白色高2
-    this.loadObj(Config.obj.group_high_building_num8).then(obj => {
-      obj.position.set(-138, -400, 148.5)
-      const position = [-138, 0, 148.5]
-      this.positionAnimate(obj, position, 0)
-      obj.name = `building_1`
-    })
-    // 加载建筑-红色高1
-    this.loadObj(Config.obj.group_low_building1).then(obj => {
-      obj.position.set(-138, -400, 148.5)
-      const position = [-138, 0, 148.5]
-      this.positionAnimate(obj, position, 0)
-      obj.name = `building_1`
-    })
-    // 加载建筑-红色高2
+    // 7、加载建筑-红色高2
     this.loadObj(Config.obj.group_low_building2).then(obj => {
-      obj.position.set(-138, -400, 148.5)
-      const position = [-138, 0, 148.5]
+      obj.position.set(-80, -400, 50)
+      const position = [-80, 0, 50]
       this.positionAnimate(obj, position, 0)
-      obj.name = `building_1`
+      obj.name = `building_low_4`
+      for (let index = 1; index < 3; index++) {
+        const cloneObj = obj.clone()
+        cloneObj.name = `building_low_${index + 1 + 3}`
+        cloneObj.position.set(-80, -400, 50 - index * 70)
+        const position = [-80, 0, 50 - index * 70]
+        this.positionAnimate(cloneObj, position, index)
+        this.scene.add(cloneObj)
+      }
     })
   }
 }
