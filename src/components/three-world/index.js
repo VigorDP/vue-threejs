@@ -123,6 +123,7 @@ export default class Main extends BaseThree {
     })
     // 2、加载物业服务中心
     this.loadObj(Config.obj.group_building_manage).then(obj => {
+      obj.position.set(0, -400, 0)
       const position = [9, 0, -90]
       this.positionAnimate(obj, position, 0)
       obj.name = `building_manage`

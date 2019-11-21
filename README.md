@@ -21,3 +21,7 @@ npm run build
 ### Customize configuration
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+```
+scp -r ./dist/** root@39.106.105.188:/root/frontend/threejs-yucai
+```
