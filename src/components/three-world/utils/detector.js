@@ -4,7 +4,7 @@
  */
 
 export default {
-  webgl: (function() {
+  webgl: (function () {
     try {
       var canvas = document.createElement('canvas')
 

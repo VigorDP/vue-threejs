@@ -9,7 +9,7 @@
       @close="onClose"
       :visible="visible"
     >
-      <p>{{content}}</p>
+      <p>{{ content }}</p>
     </a-drawer>
   </div>
 </template>

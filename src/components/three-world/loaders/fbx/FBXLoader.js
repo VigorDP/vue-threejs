@@ -313,6 +313,7 @@ var FBXLoader = (function() {
 
         var array = new Uint8Array(content)
         return window.URL.createObjectURL(
+          // eslint-disable-next-line no-undef
           new Blob([array], {
             type: type
           })

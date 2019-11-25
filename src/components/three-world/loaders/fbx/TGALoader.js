@@ -435,6 +435,7 @@ TGALoader.prototype = {
 
     var useOffscreen = typeof OffscreenCanvas !== 'undefined'
 
+    // eslint-disable-next-line no-undef
     var canvas = useOffscreen ? new OffscreenCanvas(header.width, header.height) : document.createElement('canvas')
     canvas.width = header.width
     canvas.height = header.height
