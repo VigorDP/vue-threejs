@@ -87,7 +87,6 @@ export default class BaseThree {
     this.scene.add(sunSphere)
 
     /// GUI
-
     var effectController = {
       turbidity: 10,
       rayleigh: 2,
