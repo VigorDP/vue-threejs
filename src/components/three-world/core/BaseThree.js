@@ -169,8 +169,8 @@ export default class BaseThree {
     this.raycaster = new THREE.Raycaster()
   }
   loadObj(config) {
-    const { path, scale, level } = config
-    return new OBJ(this).load(path, scale, level)
+    const { path, scale, level, childName } = config
+    return new OBJ(this).load(path, scale, level, childName)
   }
   loadFbx(config) {
     const { path, level } = config

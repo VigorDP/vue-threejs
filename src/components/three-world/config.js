@@ -11,7 +11,8 @@ export default {
     },
     house1: {
       path: '/3d/one/house1/house1',
-      level: 'one'
+      level: 'one',
+      childName: 'floor'
     },
     group_shop_1: {
       path: '/3d/one/shop/shop1',
@@ -46,16 +47,9 @@ export default {
       childName: 'building'
     },
     // 二级场景所需物品
-    building: {
-      path: '/3d/two/building_in/building_in',
-      childName: 'floor',
-      level: 'two',
-      scale: 0.5
-    },
-    // 三级场景所需物品
     floor: {
       path: '/3d/three/floor/single_floor',
-      level: 'three',
+      level: 'two',
       scale: 2
     },
     // 不含材质的物品模型

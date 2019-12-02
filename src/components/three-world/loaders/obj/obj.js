@@ -7,7 +7,7 @@ export default class OBJ {
     this.objLoader = new OBJLoader() //obj加载器
     this.mtlLoader = new MTLLoader() //材质文件加载器
   }
-  load(path, scale, level) {
+  load(path, scale, level, childName) {
     this.mtlLoader.setTexturePath(path.substring(0, path.lastIndexOf('/') + 1))
     return new Promise(res => {
       this.mtlLoader.load(`${path}.mtl`, materials => {
@@ -21,6 +21,7 @@ export default class OBJ {
               scale || Config.obj.globalScale,
               scale || Config.obj.globalScale
             )
+            obj.userData.childName = childName
             obj.userData.level = level
             this.self.setCastShadowAndReceiveShadow(obj)
             window.__HMF__[path] = obj
