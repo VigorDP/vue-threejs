@@ -10,6 +10,10 @@ import FBX from '../loaders/fbx/fbx'
 import STL from '../loaders/stl/stl'
 import OBJ from '../loaders/obj/obj'
 
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js'
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js'
+import { OutlinePass } from 'three/examples/jsm/postprocessing/OutlinePass.js'
+
 // 辅助工具类
 import DatGUI from '../utils/datGUI'
 
@@ -46,6 +50,7 @@ export default class BaseThree {
     // this.initSTL()
     this.initControl()
     this.initRaycaster()
+    this.useEffectComposer()
     Config.isDev && this.initAxis()
     Config.isDev && (this.stats = new Stats())
     this.clock = new THREE.Clock()
@@ -198,7 +203,14 @@ export default class BaseThree {
     // 通过鼠标点的位置和当前相机的矩阵计算出raycaster
     this.raycaster.setFromCamera(mouse, this.camera.threeCamera)
     // 获取raycaster直线和所有模型相交的数组集合
-    return this.raycaster.intersectObjects(this.scene.children, true)[0]
+    const obj = this.raycaster.intersectObjects(this.scene.children, true)[0]
+    if (obj.object.name === 'roof') {
+      this.outlinePass.selectedObjects = [obj.object.parent]
+    } else {
+      this.outlinePass.selectedObjects = [obj.object]
+    }
+    console.log('obj', obj)
+    return obj
   }
   canShowInfoPanel(name) {
     return canShowObjName.some(item => name.startsWith(item))
@@ -263,6 +275,26 @@ export default class BaseThree {
       .delay(200 * i)
       .start()
   }
+  useEffectComposer() {
+    var composer = new EffectComposer(this.renderer.threeRenderer)
+    this.composer = composer
+    var renderPass = new RenderPass(this.scene, this.camera.threeCamera)
+    composer.addPass(renderPass)
+
+    var outlinePass = new OutlinePass(
+      new THREE.Vector2(window.innerWidth, window.innerHeight),
+      this.scene,
+      this.camera.threeCamera
+    )
+    outlinePass.visibleEdgeColor.set('#b8d2eb')
+    outlinePass.hiddenEdgeColor.set('#ebd4cd')
+    outlinePass.edgeStrength = 5
+    outlinePass.edgeGlow = 1
+    outlinePass.edgeThickness = 3
+    outlinePass.pulsePeriod = 0
+    this.outlinePass = outlinePass
+    composer.addPass(outlinePass)
+  }
   render() {
     var time = this.clock.getDelta()
     for (const key in window.__HMF__) {
@@ -275,6 +307,7 @@ export default class BaseThree {
     Config.isDev && this.threeControls.update()
     Config.isDev && this.stats.update()
     this.renderer.render(this.scene, this.camera.threeCamera)
+    this.composer.render()
     requestAnimationFrame(this.render.bind(this))
   }
 }

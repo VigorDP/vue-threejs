@@ -9,6 +9,10 @@ export default {
       path: '/3d/one/layout/layout',
       level: 'one'
     },
+    house1: {
+      path: '/3d/one/house1/house1',
+      level: 'one'
+    },
     group_shop_1: {
       path: '/3d/one/shop/shop1',
       level: 'one'

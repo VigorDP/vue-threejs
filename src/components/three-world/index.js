@@ -1,8 +1,6 @@
 import BaseThree from './core/BaseThree'
 import Detector from './utils/detector'
-import {
-  Modal
-} from 'ant-design-vue'
+import { Modal } from 'ant-design-vue'
 import emitter from './core/event-emitter'
 // 全局配置
 import Config from './config'
@@ -45,7 +43,7 @@ export default class Main extends BaseThree {
         return
       } else {
         this.timer = setTimeout(() => {
-          emitter.emit('show-building', targetObj.object.parent.name ? targetObj.object.parent : targetObj.object)
+          emitter.emit('show-building', targetObj.object)
           this.timer = null
         }, 200)
       }
@@ -115,7 +113,7 @@ export default class Main extends BaseThree {
       false
     )
     // iframe 通信用的 message 事件，由 postMessage 触发
-    window.addEventListener('message', function (e) {
+    window.addEventListener('message', function(e) {
       if (e.origin === 'http://localhost:4300') {
         console.log(e.data)
       }
@@ -123,15 +121,25 @@ export default class Main extends BaseThree {
   }
 
   loadAllObjs() {
+    // this.initGUI()
+
     // 1、加载布局
     this.loadObj(Config.obj.layout).then(async obj => {
       obj.position.set(0, 0, 0)
-      // 2、加载物业服务中心
-      const obj2 = await this.loadObj(Config.obj.group_building_manage)
+      this.camera.threeCamera.lookAt(1, 0, 0)
+      // house1 测试
+      const obj2 = await this.loadObj(Config.obj.house1)
       obj2.position.set(0, -400, 0)
       const position = [9, 0, -90]
       this.positionAnimate(obj2, position, 0)
       obj2.name = `building_manage`
+
+      // // 2、加载物业服务中心
+      // const obj2 = await this.loadObj(Config.obj.group_building_manage)
+      // obj2.position.set(0, -400, 0)
+      // const position = [9, 0, -90]
+      // this.positionAnimate(obj2, position, 0)
+      // obj2.name = `building_manage`
       // 3、加载建筑-红色矮
       const obj3 = await this.loadObj(Config.obj.group_building_relic)
       obj3.position.set(0, -400, 0)
@@ -179,8 +187,6 @@ export default class Main extends BaseThree {
         this.positionAnimate(cloneObj, position10, index)
         this.scene.add(cloneObj)
       }
-      this.initGUI()
-      this.camera.threeCamera.lookAt(1000, 1000, 1000)
     })
   }
 }
