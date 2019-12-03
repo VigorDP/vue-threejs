@@ -48,9 +48,9 @@ export default {
     },
     // 二级场景所需物品
     floor: {
-      path: '/3d/three/floor/single_floor',
+      path: '/3d/two/house_in9/house_in9',
       level: 'two',
-      scale: 2
+      scale: 1
     },
     // 不含材质的物品模型
     stl2: {
