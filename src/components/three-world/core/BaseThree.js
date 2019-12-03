@@ -286,12 +286,12 @@ export default class BaseThree {
       this.scene,
       this.camera.threeCamera
     )
-    outlinePass.visibleEdgeColor.set('#b8d2eb')
-    outlinePass.hiddenEdgeColor.set('#ebd4cd')
+    outlinePass.visibleEdgeColor.set('#00a426')
+    outlinePass.hiddenEdgeColor.set('#4d4542')
     outlinePass.edgeStrength = 5
     outlinePass.edgeGlow = 1
-    outlinePass.edgeThickness = 3
-    outlinePass.pulsePeriod = 0
+    outlinePass.edgeThickness = 1
+    outlinePass.pulsePeriod = 1
     this.outlinePass = outlinePass
     composer.addPass(outlinePass)
   }
