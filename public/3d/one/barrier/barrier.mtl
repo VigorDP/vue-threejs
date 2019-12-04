@@ -1,0 +1,198 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# 创建的文件:04.12.2019 10:39:04
+
+newmtl dicenga1
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5882 0.5882 0.5882
+	Kd 0.5882 0.5882 0.5882
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka maps\z216.png
+	map_Kd maps\z216.png
+
+newmtl daozca1
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.2824 0.3490 0.5882
+	Kd 0.2824 0.3490 0.5882
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0452 0.0558 0.0941
+	map_Ka maps\z165.jpg
+	map_Kd maps\z165.jpg
+
+newmtl mapa7
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka maps\z263.png
+	map_Kd maps\z263.png
+
+newmtl dicenga2
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.9529 0.9529 0.9529
+	Kd 0.9529 0.9529 0.9529
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.1525 0.1525 0.1525
+	map_Ka maps\z217.png
+	map_Kd maps\z217.png
+
+newmtl shexcz2
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5882 0.5882 0.5882
+	Kd 0.5882 0.5882 0.5882
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.1059 0.1059 0.1059
+	map_Ka maps\153.png
+	map_Kd maps\153.png
+
+newmtl chukouc2
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0824 0.1686 0.6039
+	Kd 0.0824 0.1686 0.6039
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka maps\n121.png
+	map_Kd maps\n121.png
+
+newmtl shexiangt
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0314 0.0353 0.1059
+	Kd 0.0314 0.0353 0.1059
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka maps\n118.png
+	map_Kd maps\n118.png
+
+newmtl daozhac5
+	Ns 22.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.2000 0.2784 0.3255
+	Kd 0.2000 0.2784 0.3255
+	Ks 0.0900 0.0900 0.0900
+	Ke 0.0000 0.0000 0.0000
+	map_Ka maps\n119.png
+	map_Kd maps\n119.png
+	map_bump maps\n119.png
+	bump maps\n119.png
+
+newmtl rukouc
+	Ns 22.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.9020 0.9020 0.9020
+	Kd 0.9020 0.9020 0.9020
+	Ks 0.2700 0.2700 0.2700
+	Ke 0.0000 0.0000 0.0000
+	map_Ka maps\n120.png
+	map_Kd maps\n120.png
+
+newmtl shexiangcz5
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.9333 0.7412 0.6471
+	Kd 0.9333 0.7412 0.6471
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka maps\44.png
+	map_Kd maps\44.png
+	map_bump maps\44.png
+	bump maps\44.png
+
+newmtl mapa6
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka maps\z87.png
+	map_Kd maps\z87.png
+
+newmtl jinshua1
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka maps\z174.png
+	map_Kd maps\z174.png
+
+newmtl mapa5
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.1058 0.1058 0.1058
+	map_Ka maps\z262.png
+	map_Kd maps\z262.png
+
+newmtl wire_131148168
+	Ns 32
+	d 1
+	Tr 0
+	Tf 1 1 1
+	illum 2
+	Ka 0.5137 0.5804 0.6588
+	Kd 0.5137 0.5804 0.6588
+	Ks 0.3500 0.3500 0.3500

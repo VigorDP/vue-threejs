@@ -20,31 +20,37 @@ export default {
     },
     group_building_manage: {
       path: '/3d/one/building_manage/building_manage',
-      level: 'one'
+      level: 'one',
+      childName: 'floor'
     },
     group_building_relic: {
       path: '/3d/one/building_relic/building_relic',
-      level: 'one'
+      level: 'one',
+      childName: 'floor'
     },
     group_high_building_num7: {
       path: '/3d/one/high_building_num7/high_building_num7',
       level: 'one',
-      childName: 'building'
+      childName: 'floor'
     },
     group_high_building_num8: {
       path: '/3d/one/high_building_num8/high_building_num8',
       level: 'one',
-      childName: 'building'
+      childName: 'floor'
     },
     group_low_building1: {
       path: '/3d/one/low_building1/low_building1',
       level: 'one',
-      childName: 'building'
+      childName: 'floor'
     },
     group_low_building2: {
       path: '/3d/one/low_building2/low_building2',
       level: 'one',
-      childName: 'building'
+      childName: 'floor'
+    },
+    barrier: {
+      path: '/3d/one/barrier/barrier',
+      level: 'one'
     },
     // 二级场景所需物品
     floor: {

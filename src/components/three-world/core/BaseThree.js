@@ -209,7 +209,6 @@ export default class BaseThree {
     } else {
       this.outlinePass.selectedObjects = [obj.object]
     }
-    console.log('obj', obj)
     return obj
   }
   canShowInfoPanel(name) {
@@ -296,16 +295,9 @@ export default class BaseThree {
     composer.addPass(outlinePass)
   }
   render() {
-    var time = this.clock.getDelta()
-    for (const key in window.__HMF__) {
-      if (window.__HMF__.hasOwnProperty(key)) {
-        const element = window.__HMF__[key]
-        element.instance && element.instance.update(time)
-      }
-    }
     TWEEN.update()
-    Config.isDev && this.threeControls.update()
-    Config.isDev && this.stats.update()
+    // Config.isDev && this.threeControls.update()
+    // Config.isDev && this.stats.update()
     this.renderer.render(this.scene, this.camera.threeCamera)
     this.composer.render()
     requestAnimationFrame(this.render.bind(this))
