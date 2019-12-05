@@ -15,12 +15,12 @@ export default class OBJ {
         this.objLoader.load(
           `${path}.obj`,
           obj => {
-            this.self.scene.add(obj)
             obj.scale.set(
               scale || Config.obj.globalScale,
               scale || Config.obj.globalScale,
               scale || Config.obj.globalScale
             )
+            this.self.scene.add(obj)
             obj.userData.childName = childName
             obj.userData.level = level
             this.self.setCastShadowAndReceiveShadow(obj)

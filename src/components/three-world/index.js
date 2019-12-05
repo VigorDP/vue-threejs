@@ -62,8 +62,7 @@ export default class Main extends BaseThree {
       if (window.__HMF__[Config.obj[targetObjName].path]) {
         window.__HMF__[Config.obj[targetObjName].path].visible = true
         this.modifyEnviroment({
-          cameraPosition: [150, 150, 500],
-          ambientLightColor: 0xe6e6e6
+          reset: true
         })
         const parentRoute = this.router.getLastChild()
         if (parentRoute) {
@@ -75,12 +74,10 @@ export default class Main extends BaseThree {
       } else {
         // 首次加载
         this.loadObj(Config.obj[targetObjName]).then(obj => {
-          obj.userData.childName = Config.obj[targetObjName].childName
-          obj.userData.level = Config.obj[targetObjName].level
           this.modifyEnviroment({
-            cameraPosition: [150, 150, 500],
-            ambientLightColor: 0xe6e6e6
+            reset: true
           })
+          obj.visible = true
           const parentRoute = this.router.getLastChild()
           if (parentRoute) {
             this.router.push({
@@ -188,7 +185,7 @@ export default class Main extends BaseThree {
       }
 
       // 8、加载建筑-红色高2
-      const obj8 = await this.loadObj(Config.obj.barrier)
+      const obj8 = await this.loadObj(Config.obj.barrier2)
       obj8.position.set(80, -0, -100)
       obj8.name = `barrier`
 

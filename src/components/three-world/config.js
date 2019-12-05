@@ -48,15 +48,15 @@ export default {
       level: 'one',
       childName: 'floor'
     },
-    barrier: {
-      path: '/3d/one/barrier/barrier',
+    barrier2: {
+      path: '/3d/one/barrier2/barrier2',
       level: 'one'
     },
     // 二级场景所需物品
     floor: {
       path: '/3d/two/house_in9/house_in9',
       level: 'two',
-      scale: 1
+      scale: 0.7
     },
     // 不含材质的物品模型
     stl2: {

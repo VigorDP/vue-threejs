@@ -28,6 +28,7 @@ const canShowObjName = [
   'building_high_', // 停车场
   'building_low_', // 出口道闸
   'barrier_gate_in', // 入口道闸
+  'barrier_gate_out', // 出口道闸
   'charging_pile', // 充电桩
   'camera', // 摄像头
   'access_control_machine' // 门禁
