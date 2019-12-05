@@ -4,6 +4,7 @@
     <!-- <router-view></router-view> -->
     <section class="infoContainer">
       <tip :description="description" :customStyle="style"></tip>
+      <button @click="goTo">到摄像头</button>
     </section>
   </div>
 </template>
@@ -48,11 +49,8 @@ export default {
       }
       get('topics').then(data => (this.content = data.data[parseInt(Math.random() * data.data.length)].content))
     },
-    onClose() {
-      this.visible = false
-    },
-    setModal1Visible(modal1Visible) {
-      this.modal1Visible = modal1Visible
+    goTo() {
+      emitter.emit('target', { to: 'camera', position: [80, -0, -140] })
     }
   }
 }

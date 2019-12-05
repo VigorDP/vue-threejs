@@ -52,15 +52,24 @@ export default {
       path: '/3d/one/barrier2/barrier2',
       level: 'one'
     },
+    parking: {
+      path: '/3d/one/group_parking_1/group_parking_1',
+      level: 'one'
+    },
+    camera: {
+      path: '/3d/one/group_camera_1/group_camera_1',
+      level: 'one',
+      scale: 1
+    },
+    charging_pile: {
+      path: '/3d/one/group_charging_pile_1/group_charging_pile_1',
+      level: 'one'
+    },
     // 二级场景所需物品
     floor: {
       path: '/3d/two/house_in9/house_in9',
       level: 'two',
       scale: 0.7
-    },
-    // 不含材质的物品模型
-    stl2: {
-      path: '/3d/main.STL'
     }
   },
   fog: {
@@ -74,7 +83,7 @@ export default {
     aspect: 1,
     posX: 0,
     posY: 200,
-    posZ: 300
+    posZ: -300
   },
   controls: {
     autoRotate: false,
@@ -91,9 +100,9 @@ export default {
     dampingFactor: 0.5,
     enableZoom: true,
     target: {
-      x: 0,
+      x: 40,
       y: 0,
-      z: 0
+      z: -100
     }
   },
   ambientLight: {

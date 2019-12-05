@@ -34,6 +34,7 @@ export default class Main extends BaseThree {
 
   showObjInfo(event) {
     const targetObj = this.getFirstIntersectObj(event)
+    console.log('object', targetObj.object.name)
     if (
       targetObj &&
       (this.canShowInfoPanel(targetObj.object.name) || this.canShowInfoPanel(targetObj.object.parent.name))
@@ -104,6 +105,10 @@ export default class Main extends BaseThree {
       if (e.origin === 'http://localhost:4300') {
         console.log(e.data)
       }
+    })
+
+    emitter.on('target', args => {
+      this.goTo(args)
     })
   }
 
@@ -179,8 +184,29 @@ export default class Main extends BaseThree {
       obj8.position.set(80, -0, -100)
       obj8.name = `barrier`
 
+      // 9、加载停车场
+      const obj9 = await this.loadObj(Config.obj.camera)
+      obj9.position.set(80, -0, -140)
+      obj9.name = `barrier`
+
       // 初始化事件
       this.initEvent()
     })
+  }
+
+  goTo(args) {
+    const { to, position } = args
+    const origin = this.threeControls.target
+    requestAnimationFrame(animate.bind(this))
+    var x = origin.x
+
+    function animate() {
+      x += 10
+      if (x >= position[0]) return
+      this.threeControls.target.set(x, 0, 0)
+      console.log('target', this.threeControls.target)
+
+      requestAnimationFrame(animate.bind(this))
+    }
   }
 }

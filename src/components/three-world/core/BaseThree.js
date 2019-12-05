@@ -3,16 +3,17 @@ import TWEEN from 'tween.js'
 import Renderer from './renderer' // 初始化渲染器(paint、shadow、resize、dpr)
 import Camera from './camera' // 初始化相机(init、resize、position change)
 import Light from './light' // 给场景添加光源(环境光、方向光、点光、半球光)
-import OrbitControls from './orbitControls'
 import { Sky } from './sky'
 import Router from './router'
 import FBX from '../loaders/fbx/fbx'
-import STL from '../loaders/stl/stl'
 import OBJ from '../loaders/obj/obj'
 
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js'
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js'
 import { OutlinePass } from 'three/examples/jsm/postprocessing/OutlinePass.js'
+
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import { FlyControls } from 'three/examples/jsm/controls/FlyControls'
 
 // 辅助工具类
 import DatGUI from '../utils/datGUI'
@@ -48,8 +49,9 @@ export default class BaseThree {
     this.initRenderer()
     this.initCamera()
     this.initSky()
-    // this.initSTL()
-    this.initControl()
+    // this.initFlyControl()
+    this.initOrbitControl()
+
     this.initRaycaster()
     this.useEffectComposer()
     Config.isDev && this.initAxis()
@@ -132,15 +134,8 @@ export default class BaseThree {
     guiChanged()
   }
 
-  initSTL() {
-    const path = Config.obj.stl2.path
-    this.stl = new STL(this.scene)
-    this.stl.load(path).then(obj => console.log('object', obj))
-  }
-
-  initControl() {
-    const orbitControls = new OrbitControls(THREE)
-    this.threeControls = new orbitControls(this.camera.threeCamera, this.container)
+  initOrbitControl() {
+    this.threeControls = new OrbitControls(this.camera.threeCamera, this.container)
     this.threeControls.target.set(Config.controls.target.x, Config.controls.target.y, Config.controls.target.z)
     this.threeControls.autoRotate = Config.controls.autoRotate
     this.threeControls.autoRotateSpeed = Config.controls.autoRotateSpeed
@@ -153,6 +148,14 @@ export default class BaseThree {
     this.threeControls.enableDamping = Config.controls.enableDamping
     this.threeControls.enableZoom = Config.controls.enableZoom
     this.threeControls.dampingFactor = Config.controls.dampingFactor
+  }
+
+  initFlyControl() {
+    this.threeControls2 = new FlyControls(this.camera.threeCamera, this.container)
+    this.threeControls2.movementSpeed = 100 //设置移动的速度
+    this.threeControls2.rollSpeed = 0 //设置旋转速度
+    this.threeControls2.autoForward = false
+    this.threeControls2.dragToLook = false
   }
 
   initCamera() {
@@ -287,9 +290,11 @@ export default class BaseThree {
     composer.addPass(outlinePass)
   }
   render() {
-    TWEEN.update()
+    // this.threeControls2.update(this.clock.getDelta())
+    // TWEEN.update()
     // Config.isDev && this.threeControls.update()
     // Config.isDev && this.stats.update()
+    this.threeControls.update()
     this.renderer.render(this.scene, this.camera.threeCamera)
     this.composer.render()
     requestAnimationFrame(this.render.bind(this))
