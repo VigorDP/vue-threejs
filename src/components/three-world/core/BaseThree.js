@@ -238,15 +238,6 @@ export default class BaseThree {
     const vector1 = point.project(this.camera.threeCamera)
     return [vector1.x * halfWidth + halfWidth, -vector1.y * halfHeight + halfHeight]
   }
-  modifyEnviroment({ cameraPosition, ambientLightColor, reset = false }) {
-    if (reset) {
-      this.camera.threeCamera.position.set(Config.camera.posX, Config.camera.posY, Config.camera.posZ)
-      this.light.ambientLight.color.set(Config.ambientLight.color)
-    } else {
-      this.camera.threeCamera.position.set(...cameraPosition)
-      this.light.ambientLight.color.set(ambientLightColor)
-    }
-  }
   positionAnimate(obj, targetPosition, i) {
     new TWEEN.Tween(obj.position)
       .to(

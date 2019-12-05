@@ -61,9 +61,6 @@ export default class Main extends BaseThree {
       // 已加载过
       if (window.__HMF__[Config.obj[targetObjName].path]) {
         window.__HMF__[Config.obj[targetObjName].path].visible = true
-        this.modifyEnviroment({
-          reset: true
-        })
         const parentRoute = this.router.getLastChild()
         if (parentRoute) {
           this.router.push({
@@ -74,9 +71,6 @@ export default class Main extends BaseThree {
       } else {
         // 首次加载
         this.loadObj(Config.obj[targetObjName]).then(obj => {
-          this.modifyEnviroment({
-            reset: true
-          })
           obj.visible = true
           const parentRoute = this.router.getLastChild()
           if (parentRoute) {
@@ -101,10 +95,6 @@ export default class Main extends BaseThree {
           const popRoute = this.router.pop()
           popRoute && this.showObjByLevel(popRoute.parent)
           emitter.emit('hide-all-infoPanel')
-          popRoute.parent === 'one' &&
-            this.modifyEnviroment({
-              reset: true
-            })
         }
       },
       false
