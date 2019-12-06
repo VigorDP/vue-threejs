@@ -67,9 +67,9 @@ export default {
     },
     // 二级场景所需物品
     floor: {
-      path: '/3d/two/house_in9/house_in9',
+      path: '/3d/two/house_inner/house_in',
       level: 'two',
-      scale: 0.7
+      scale: 0.5
     }
   },
   fog: {
