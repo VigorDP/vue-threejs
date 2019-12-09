@@ -87,7 +87,9 @@ export default class Main extends BaseThree {
 
   initEvent() {
     window.addEventListener('dblclick', this.enterObj.bind(this), false) // 双击进入选中物体
-    window.addEventListener('mousemove', this.showObjInfo.bind(this), false) // 单击选中物体
+    // window.addEventListener('mousemove', this.showObjInfo.bind(this), false) // 单击选中物体
+    window.addEventListener('click', this.showObjInfo.bind(this), false) // 单击选中物体
+
     window.addEventListener(
       'mouseup',
       event => {

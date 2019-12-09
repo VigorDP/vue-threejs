@@ -1,0 +1,11 @@
+{
+  "urlParam": [{
+      "id": "video-ckplayer",
+      "url": "rtsp://192.168.2.15:554/openUrl/lOmkhLq"
+    },
+    {
+      "id": "video2",
+      "url": "rtsp://admin:DSJ123456@192.168.18.20:554/Streaming/Channels/102?transportmode=unicast"
+    }
+  ]
+}
