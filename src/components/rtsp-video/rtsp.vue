@@ -1,7 +1,7 @@
 <template>
   <div class="container" v-if="show" :style="customStyle">
     <div class="head">
-      <div class="left">{{description}}-视频监控</div>
+      <div class="left">{{ description }}-视频监控</div>
       <div class="right" @click.stop="close"></div>
     </div>
     <div :id="playerId" class="vxg-container" ref="vxgplayer"></div>
@@ -113,10 +113,10 @@ export default {
     }
     .right {
       width: 40px;
-      background: url(../../assets/vxg-player/close_normal.png) center/100% 100% no-repeat;
+      background: url(../../assets/close_normal.png) center/100% 100% no-repeat;
       &:hover {
         cursor: pointer;
-        background: url(../../assets/vxg-player/close_hover.png) center/100% 100% no-repeat;
+        background: url(../../assets/close_hover.png) center/100% 100% no-repeat;
       }
     }
   }

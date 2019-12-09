@@ -121,70 +121,70 @@ export default class Main extends BaseThree {
     this.loadObj(Config.obj.layout).then(async obj => {
       obj.position.set(0, 0, 0)
       // house1 测试
-      const obj2 = await this.loadObj(Config.obj.house1)
-      obj2.position.set(9, 0, -90)
-      // const position = [9, 0, -90]
-      // this.positionAnimate(obj2, position, 0)
-      obj2.name = `building_manage`
-
-      // 2、加载物业服务中心
-      // const obj2 = await this.loadObj(Config.obj.group_building_manage)
-      // obj2.position.set(0, -400, 0)
-      // const position = [9, 0, -90]
-      // this.positionAnimate(obj2, position, 0)
+      // const obj2 = await this.loadObj(Config.obj.house1)
+      // obj2.position.set(9, 0, -90)
+      // // const position = [9, 0, -90]
+      // // this.positionAnimate(obj2, position, 0)
       // obj2.name = `building_manage`
-      // 3、加载建筑-红色矮
-      const obj3 = await this.loadObj(Config.obj.group_building_relic)
-      obj3.position.set(13, 0, -40)
-      // const position3 = [13, 0, -40]
-      // this.positionAnimate(obj3, position3, 0)
-      obj3.name = `building_relic`
-      // // 4、加载建筑 - 白色高1(最右边)
-      const obj4 = await this.loadObj(Config.obj.group_high_building_num7)
-      obj4.position.set(78, -0, -40)
-      // const position4 = [78, 0, -40]
-      // this.positionAnimate(obj4, position4, 0)
-      obj4.name = `building_high_1`
-      // 5、加载建筑-白色高2
-      const obj5 = await this.loadObj(Config.obj.group_high_building_num8)
-      obj5.position.set(40, -0, 50)
-      // const position5 = [40, 0, 50]
-      // this.positionAnimate(obj5, position5, 0)
-      obj5.name = `building_high_2`
-      // 6、加载建筑-红色高1
-      const obj6 = await this.loadObj(Config.obj.group_low_building1)
-      obj6.position.set(-180, -0, 50)
-      // const position7 = [-180, 0, 50]
-      // this.positionAnimate(obj6, position7, 0)
-      obj6.name = `building_low_1`
-      // 左下角建筑物群
-      for (let index = 1; index < 3; index++) {
-        const cloneObj = obj6.clone()
-        cloneObj.name = `building_low_${index + 1}`
-        cloneObj.position.set(-180, -0, 50 - index * 70)
-        // const position8 = [-180, 0, 50 - index * 70]
-        // this.positionAnimate(cloneObj, position8, index)
-        this.scene.add(cloneObj)
-      }
-      // 7、加载建筑-红色高2
-      const obj7 = await this.loadObj(Config.obj.group_low_building2)
-      obj7.position.set(-80, -0, 50)
-      // const position9 = [-80, 0, 50]
-      // this.positionAnimate(obj7, position9, 0)
-      obj7.name = `building_low_4`
-      for (let index = 1; index < 3; index++) {
-        const cloneObj = obj7.clone()
-        cloneObj.name = `building_low_${index + 1 + 3}`
-        cloneObj.position.set(-80, -0, 50 - index * 70)
-        // const position10 = [-80, 0, 50 - index * 70]
-        // this.positionAnimate(cloneObj, position10, index)
-        this.scene.add(cloneObj)
-      }
 
-      // 8、加载建筑-红色高2
-      const obj8 = await this.loadObj(Config.obj.barrier)
-      obj8.position.set(80, -0, -100)
-      obj8.name = `barrier`
+      // // 2、加载物业服务中心
+      // // const obj2 = await this.loadObj(Config.obj.group_building_manage)
+      // // obj2.position.set(0, -400, 0)
+      // // const position = [9, 0, -90]
+      // // this.positionAnimate(obj2, position, 0)
+      // // obj2.name = `building_manage`
+      // // 3、加载建筑-红色矮
+      // const obj3 = await this.loadObj(Config.obj.group_building_relic)
+      // obj3.position.set(13, 0, -40)
+      // // const position3 = [13, 0, -40]
+      // // this.positionAnimate(obj3, position3, 0)
+      // obj3.name = `building_relic`
+      // // // 4、加载建筑 - 白色高1(最右边)
+      // const obj4 = await this.loadObj(Config.obj.group_high_building_num7)
+      // obj4.position.set(78, -0, -40)
+      // // const position4 = [78, 0, -40]
+      // // this.positionAnimate(obj4, position4, 0)
+      // obj4.name = `building_high_1`
+      // // 5、加载建筑-白色高2
+      // const obj5 = await this.loadObj(Config.obj.group_high_building_num8)
+      // obj5.position.set(40, -0, 50)
+      // // const position5 = [40, 0, 50]
+      // // this.positionAnimate(obj5, position5, 0)
+      // obj5.name = `building_high_2`
+      // // 6、加载建筑-红色高1
+      // const obj6 = await this.loadObj(Config.obj.group_low_building1)
+      // obj6.position.set(-180, -0, 50)
+      // // const position7 = [-180, 0, 50]
+      // // this.positionAnimate(obj6, position7, 0)
+      // obj6.name = `building_low_1`
+      // // 左下角建筑物群
+      // for (let index = 1; index < 3; index++) {
+      //   const cloneObj = obj6.clone()
+      //   cloneObj.name = `building_low_${index + 1}`
+      //   cloneObj.position.set(-180, -0, 50 - index * 70)
+      //   // const position8 = [-180, 0, 50 - index * 70]
+      //   // this.positionAnimate(cloneObj, position8, index)
+      //   this.scene.add(cloneObj)
+      // }
+      // // 7、加载建筑-红色高2
+      // const obj7 = await this.loadObj(Config.obj.group_low_building2)
+      // obj7.position.set(-80, -0, 50)
+      // // const position9 = [-80, 0, 50]
+      // // this.positionAnimate(obj7, position9, 0)
+      // obj7.name = `building_low_4`
+      // for (let index = 1; index < 3; index++) {
+      //   const cloneObj = obj7.clone()
+      //   cloneObj.name = `building_low_${index + 1 + 3}`
+      //   cloneObj.position.set(-80, -0, 50 - index * 70)
+      //   // const position10 = [-80, 0, 50 - index * 70]
+      //   // this.positionAnimate(cloneObj, position10, index)
+      //   this.scene.add(cloneObj)
+      // }
+
+      // // 8、加载建筑-红色高2
+      // const obj8 = await this.loadObj(Config.obj.barrier)
+      // obj8.position.set(80, -0, -100)
+      // obj8.name = `barrier`
 
       // 9、加载停车场
       const obj9 = await this.loadObj(Config.obj.camera)

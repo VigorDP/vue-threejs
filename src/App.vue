@@ -20,15 +20,20 @@
 import ThreeWorld from './components/three-world/ThreeWorld.vue'
 import Tip from './components/tip/tip.vue'
 import RtspVideo from './components/rtsp-video/rtsp.vue'
+import PeopleInfo from './components/people-info/people-info.vue'
 
 import emitter from './common/event-emitter'
 export default {
   name: 'root',
-  components: {
-    ThreeWorld,
-    Tip,
-    RtspVideo
+  data() {
+    return {
+      visible: false,
+      style: '',
+      description: '',
+      currentComponent: 'people-info'
+    }
   },
+
   mounted() {
     emitter.on('show-building', (obj, position) => {
       // this.showDrawer(obj)
@@ -38,21 +43,14 @@ export default {
       if (obj.name.startsWith('camera')) {
         this.currentComponent = 'rtsp-video'
       } else {
-        this.currentComponent = 'tip'
+        this.currentComponent = 'people-info'
       }
     })
     emitter.on('hide-all-infoPanel', _ => {
       this.visible = false
     })
   },
-  data() {
-    return {
-      visible: false,
-      style: '',
-      description: '',
-      currentComponent: 'tip'
-    }
-  },
+
   methods: {
     showDrawer(obj) {
       if (this.title === obj.name) {
@@ -70,16 +68,26 @@ export default {
       emitter.emit('target', { to: 'camera', position: [80, -0, -140] })
     },
     handleClose(e) {
-      this.currentComponent = 'tip'
+      this.currentComponent = 'people-info'
     }
+  },
+  components: {
+    ThreeWorld,
+    Tip,
+    RtspVideo,
+    PeopleInfo
   }
 }
 </script>
 
-<style lang='scss'>
-#root {
+<style lang="scss">
+* {
   margin: 0;
   padding: 0;
+  ul,
+  li {
+    text-decoration: none;
+  }
 }
 .infoContainer {
   position: relative;
