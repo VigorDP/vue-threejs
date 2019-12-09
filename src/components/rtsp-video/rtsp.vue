@@ -1,14 +1,18 @@
 <template>
-  <div class="container">
-    <div [id]="playerId1" class="vxg-container" ref="vxgplayer"></div>
+  <div class="container" v-if="show" :style="customStyle">
+    <div class="head">
+      <div class="left">{{description}}-视频监控</div>
+      <div class="right" @click.stop="close"></div>
+    </div>
+    <div :id="playerId" class="vxg-container" ref="vxgplayer"></div>
   </div>
 </template>
 
 <script>
 const VxgParam = {
   url: '',
-  nmf_path: 'media_player.nmf',
-  nmf_src: '/assets/vxg/pnacl/Release/media_player.nmf',
+  nmf_path: '/vxg/pnacl/Release/media_player.nmf',
+  nmf_src: '/vxg/pnacl/Release/media_player.nmf',
   latency: 8000,
   autohide: 3,
   controls: true,
@@ -19,48 +23,69 @@ const VxgParam = {
 }
 export default {
   name: 'Rtsp-Video',
-  props: ['description', 'customStyle'],
-  data: {
-    playerId1: 'vxg_media_player11'
-  },
-  mounted: function() {
-    this.initVxgPlugin()
-    this.initPlayer()
-    this.playVideo(this.videoUrl)
-  },
-  initVxgPlugin() {
-    if (vm.vxgplayer1 == null || vm.vxgplayer1.nativeElement.id == null || vm.vxgplayer1.nativeElement.id.length < 1) {
-      console.info('vxgplayer1 id is null')
-      return
-    }
-    vm.player1 = vxgplayer(vm.playerId1, _.cloneDeep(RtspParam.vxgParam))
-    if (vm.player1 == null) {
-      return
+  props: ['videoUrl', 'playerId', 'customStyle', 'description'],
+  data: function() {
+    return {
+      player: null,
+      show: true
     }
   },
-  initPlayer() {
-    player.onReadyStateChange(onreadyState => {
-      console.log('player LOADED: versionPLG=' + vm.player1.versionPLG() + ' versionAPP=' + vm.player1.versionAPP())
-    })
-    player.onStateChange(readyState => {
-      console.log('NEW READY STATE: ' + readyState)
-    })
-    player.onError(err => {
-      console.error('初始化vxg出错：', err)
-    })
+  mounted() {
+    // 异步加载 vxgplayer 插件
+    let script = document.createElement('script')
+    script.setAttribute('src', '/vxg/vxgplayer.min.js')
+    script.setAttribute('type', 'text/javascript')
+    document.head.appendChild(script)
+    const that = this
+    script.onload = function() {
+      that.initVxgPlugin()
+      that.initPlayer()
+      that.playVideo(that.videoUrl)
+    }
 
-    player.onBandwidthError(res => {
-      console.log(res.error())
-    })
+    let style = document.createElement('link')
+    style.setAttribute('type', 'text/css')
+    style.setAttribute('rel', 'stylesheet')
+    style.setAttribute('href', '/vxg/vxgplayer.min.css')
+    document.head.appendChild(style)
   },
-  playVideo() {
-    this.player1.src(rtsp)
-    this.player1.play()
+  methods: {
+    initVxgPlugin() {
+      if (!this.videoUrl || !this.playerId) {
+        alert(this.name + '请传入 videoUrl 和 playerId')
+        return
+      }
+      this.player = window.vxgplayer(this.playerId, VxgParam)
+    },
+    initPlayer() {
+      this.player.onReadyStateChange(onreadyState => {
+        console.log('player LOADED: versionPLG=' + this.player.versionPLG() + ' versionAPP=' + this.player.versionAPP())
+      })
+      this.player.onStateChange(readyState => {
+        console.log('NEW READY STATE: ' + readyState)
+      })
+      this.player.onError(err => {
+        console.error('初始化vxg出错：', err)
+      })
+
+      this.player.onBandwidthError(res => {
+        console.log(res.error())
+      })
+    },
+    playVideo(videoUrl) {
+      this.player.src(videoUrl)
+      this.player.play()
+    },
+    close() {
+      this.show = false
+      this.$emit('close')
+    }
   },
+
   unmount: function() {
-    if (this.player1) {
-      this.player1.dispose()
-      this.player1 = null
+    if (this.player) {
+      this.player.dispose()
+      this.player = null
     }
   }
 }
@@ -69,13 +94,37 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
 .container {
-  width: 100%;
-  height: 100%;
+  display: inline-block;
   position: relative;
-
+  width: 600px;
+  height: 420px;
+  .head {
+    display: flex;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    justify-content: space-between;
+    background: url(../../assets/vxg-player/header_bg.png) center/100% 100% no-repeat;
+    .left {
+      position: relative;
+      left: 2.5em;
+      color: #afd0d0;
+      font-size: 14px;
+    }
+    .right {
+      width: 40px;
+      background: url(../../assets/vxg-player/close_normal.png) center/100% 100% no-repeat;
+      &:hover {
+        cursor: pointer;
+        background: url(../../assets/vxg-player/close_hover.png) center/100% 100% no-repeat;
+      }
+    }
+  }
   .vxg-container {
+    position: relative;
     width: 100% !important;
     height: 100% !important;
+    background: #111;
   }
 }
 </style>
