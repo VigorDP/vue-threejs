@@ -48,8 +48,8 @@ export default {
       level: 'one',
       childName: 'floor'
     },
-    barrier2: {
-      path: '/3d/one/barrier2/barrier2',
+    barrier: {
+      path: '/3d/one/barrier/barrier',
       level: 'one'
     },
     parking: {

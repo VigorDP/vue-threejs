@@ -182,7 +182,7 @@ export default class Main extends BaseThree {
       }
 
       // 8、加载建筑-红色高2
-      const obj8 = await this.loadObj(Config.obj.barrier2)
+      const obj8 = await this.loadObj(Config.obj.barrier)
       obj8.position.set(80, -0, -100)
       obj8.name = `barrier`
 
