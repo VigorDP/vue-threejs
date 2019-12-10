@@ -1,35 +1,42 @@
 <template>
-  <div class="people" :style="customStyle">
-    <tabs :options="{ useUrlFragment: false }" @changed.native.stop="tabChanged">
+  <div class="people" :style="customStyle" @click.stop>
+    <tabs :options="{ useUrlFragment: false }">
       <tab v-for="(people, key) in config" :key="key" :name="people.location">
         <div class="top">
           <!-- 左边 -->
           <div class="left">
             <div class="avatar">
-              <img :src="people.img" alt="" />
+              <img :src="people.img" alt />
               <div class="img_decorator">个人信息</div>
             </div>
             <div class="basic_info">
               <div class="line">
-                <span>业主姓名:</span><span>{{ people.name }} </span>
+                <span>业主姓名:</span>
+                <span>{{ people.name }}</span>
               </div>
               <div class="line">
-                <span>性别:</span><span>{{ people.sex }}</span>
+                <span>性别:</span>
+                <span>{{ people.sex }}</span>
               </div>
               <div class="line">
-                <span>出生日期:</span><span>{{ people.birthday }}</span>
+                <span>出生日期:</span>
+                <span>{{ people.birthday }}</span>
               </div>
               <div class="line">
-                <span>手机号:</span><span>{{ people.mobile }}</span>
+                <span>手机号:</span>
+                <span>{{ people.mobile }}</span>
               </div>
               <div class="line">
-                <span>所属小区:</span><span>{{ people.socialName }}</span>
+                <span>所属小区:</span>
+                <span>{{ people.socialName }}</span>
               </div>
               <div class="line">
-                <span>单元号:</span><span>{{ people.unit }}</span>
+                <span>单元号:</span>
+                <span>{{ people.unit }}</span>
               </div>
               <div class="line">
-                <span>物业费缴纳:</span><span>{{ people.isPayedPropertyFee }}</span>
+                <span>物业费缴纳:</span>
+                <span>{{ people.isPayedPropertyFee }}</span>
               </div>
             </div>
           </div>
@@ -37,39 +44,51 @@
           <div class="right">
             <div class="basic_info">
               <div class="line">
-                <span>民族:</span><span>{{ people.nation }}</span>
+                <span>民族:</span>
+                <span>{{ people.nation }}</span>
               </div>
               <div class="line">
-                <span>婚姻状况:</span><span>{{ people.marriageStatus }}</span>
+                <span>婚姻状况:</span>
+                <span>{{ people.marriageStatus }}</span>
               </div>
               <div class="line">
-                <span>籍贯:</span><span>{{ people.nativeName }}</span>
+                <span>籍贯:</span>
+                <span>{{ people.nativeName }}</span>
               </div>
               <div class="line">
-                <span>证件类型:</span><span>{{ people.idType }}</span>
+                <span>证件类型:</span>
+                <span>{{ people.idType }}</span>
               </div>
               <div class="line">
-                <span>证件号码:</span><span>{{ people.idCard }}</span>
+                <span>证件号码:</span>
+                <span>{{ people.idCard }}</span>
               </div>
               <div class="line">
-                <span>学历:</span><span>{{ people.educationLevel }}</span>
+                <span>学历:</span>
+                <span>{{ people.educationLevel }}</span>
               </div>
               <div class="line">
-                <span>所属户主:</span><span>{{ people.name }}</span>
+                <span>所属户主:</span>
+                <span>{{ people.name }}</span>
               </div>
               <div class="line">
-                <span>入住人员数量:</span><span>{{ people.familyMember.length }}</span>
+                <span>入住人员数量:</span>
+                <span>{{ people.familyMember.length }}</span>
               </div>
-              <div class="line"><span>入住时间:</span><span>2015年6月</span></div>
+              <div class="line">
+                <span>入住时间:</span>
+                <span>2015年6月</span>
+              </div>
               <div class="extra">
-                <span>备注:</span><span>{{ people.remark }}</span>
+                <span>备注:</span>
+                <span>{{ people.remark }}</span>
               </div>
             </div>
           </div>
         </div>
         <div class="bottom">
           <div class="left">
-            <img src="../../assets/people-info/house_info.png" alt="" />
+            <img src="../../assets/people-info/house_info.png" alt />
             <span>家庭信息</span>
           </div>
           <div class="right2">
@@ -91,7 +110,7 @@
         </div>
       </tab>
     </tabs>
-    <div class="close" @click.stop="close"></div>
+    <div class="close" @click="close"></div>
   </div>
 </template>
 
@@ -106,9 +125,6 @@ export default {
   name: 'People-Info',
   props: ['description', 'customStyle', 'config'],
   methods: {
-    tabChanged(selectedTab) {
-      console.log('Tab changed to:' + selectedTab.tab.name)
-    },
     close() {
       this.$emit('close')
     }
