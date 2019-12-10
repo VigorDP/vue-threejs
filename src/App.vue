@@ -31,21 +31,63 @@ export default {
       visible: false,
       style: '',
       description: '',
-      currentComponent: 'people-info',
+      currentComponent: 'tip',
       peopleInfo: [
         {
           location: '3栋3单元301',
-          owner: {
-            img:
-              'https://upload.jianshu.io/users/upload_avatars/6813214/9d36bb4a-f514-4d40-8ab8-f885bed1ac54.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/120/h/120',
-            name: '风之化身',
-            sex: '男',
-            birthDate: '2019年01月',
-            mobile: '15926339107',
-            community: '育才嘉苑',
-            unit: '二期6栋3单元',
-            isPayedPropertyFee: false
-          }
+          img:
+            'https://upload.jianshu.io/users/upload_avatars/6813214/9d36bb4a-f514-4d40-8ab8-f885bed1ac54.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/120/h/120',
+          name: '风之化身',
+          sex: '男',
+          birthday: '2019年01月',
+          mobile: '15926339107',
+          socialName: '育才嘉苑',
+          unit: '二期6栋3单元',
+          isPayedPropertyFee: false,
+          nation: '汉',
+          marriageStatus: '未婚',
+          nativeName: '湖北武汉',
+          idType: '身份证',
+          idCard: '421302199501141680',
+          educationLevel: '硕士',
+          remark: '暂无',
+          familyMember: [
+            {
+              name: '1',
+              role: 'child',
+              sex: '男',
+              tel: '15926339107',
+              idCard: '45789423554561522'
+            }
+          ]
+        },
+        {
+          location: '3栋3单元302',
+          img:
+            'https://upload.jianshu.io/users/upload_avatars/6813214/9d36bb4a-f514-4d40-8ab8-f885bed1ac54.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/120/h/120',
+          name: '风之化身2',
+          sex: '男',
+          birthday: '2019年01月',
+          mobile: '15926339107',
+          socialName: '育才嘉苑',
+          unit: '二期6栋3单元',
+          isPayedPropertyFee: false,
+          nation: '汉',
+          marriageStatus: '未婚',
+          nativeName: '湖北武汉',
+          idType: '身份证',
+          idCard: '421302199501141680',
+          educationLevel: '硕士',
+          remark: '暂无',
+          familyMember: [
+            {
+              name: '1',
+              role: 'child',
+              sex: '男',
+              tel: '15926339107',
+              idCard: '45789423554561522'
+            }
+          ]
         }
       ]
     }
@@ -59,8 +101,10 @@ export default {
       // 视频监控
       if (obj.name.startsWith('camera')) {
         this.currentComponent = 'rtsp-video'
-      } else {
+      } else if (obj.name.startsWith('floor')) {
         this.currentComponent = 'people-info'
+      } else {
+        this.currentComponent = 'tip'
       }
     })
     emitter.on('hide-all-infoPanel', _ => {
@@ -85,7 +129,7 @@ export default {
       emitter.emit('target', { to: 'camera', position: [80, -0, -140] })
     },
     handleClose(e) {
-      this.currentComponent = 'people-info'
+      this.currentComponent = 'tip'
     }
   },
   components: {

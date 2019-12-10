@@ -1,40 +1,69 @@
 <template>
   <div class="people" :style="customStyle">
-    <tabs :options="{ useUrlFragment: false }" @changed="tabChanged">
-      <tab name="First tab">
+    <tabs :options="{ useUrlFragment: false }" @changed.native.stop="tabChanged">
+      <tab v-for="(people, key) in config" :key="key" :name="people.location">
         <div class="top">
           <!-- 左边 -->
           <div class="left">
             <div class="avatar">
-              <img
-                src="https://upload.jianshu.io/users/upload_avatars/6813214/9d36bb4a-f514-4d40-8ab8-f885bed1ac54.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/120/h/120"
-                alt=""
-              />
+              <img :src="people.img" alt="" />
               <div class="img_decorator">个人信息</div>
             </div>
             <div class="basic_info">
-              <div class="line"><span>业主姓名:</span><span>风之化身 </span></div>
-              <div class="line"><span>性别:</span><span>男</span></div>
-              <div class="line"><span>出生日期:</span><span>1966年5月</span></div>
-              <div class="line"><span>手机号:</span><span>15837202761</span></div>
-              <div class="line"><span>所属小区:</span><span>育才嘉苑</span></div>
-              <div class="line"><span>单元号:</span><span>二期6栋3单元</span></div>
-              <div class="line"><span>物业费缴纳:</span><span>已交</span></div>
+              <div class="line">
+                <span>业主姓名:</span><span>{{ people.name }} </span>
+              </div>
+              <div class="line">
+                <span>性别:</span><span>{{ people.sex }}</span>
+              </div>
+              <div class="line">
+                <span>出生日期:</span><span>{{ people.birthday }}</span>
+              </div>
+              <div class="line">
+                <span>手机号:</span><span>{{ people.mobile }}</span>
+              </div>
+              <div class="line">
+                <span>所属小区:</span><span>{{ people.socialName }}</span>
+              </div>
+              <div class="line">
+                <span>单元号:</span><span>{{ people.unit }}</span>
+              </div>
+              <div class="line">
+                <span>物业费缴纳:</span><span>{{ people.isPayedPropertyFee }}</span>
+              </div>
             </div>
           </div>
           <div class="center"></div>
           <div class="right">
             <div class="basic_info">
-              <div class="line"><span>民族:</span><span>汉</span></div>
-              <div class="line"><span>婚姻状况:</span><span>已婚</span></div>
-              <div class="line"><span>籍贯:</span><span>湖北武汉</span></div>
-              <div class="line"><span>证件类型:</span><span>身份证</span></div>
-              <div class="line"><span>证件号码:</span><span>42089673859436768</span></div>
-              <div class="line"><span>学历:</span><span>博士</span></div>
-              <div class="line"><span>所属户主:</span><span>胡骏杰</span></div>
-              <div class="line"><span>入住人员数量:</span><span>5</span></div>
+              <div class="line">
+                <span>民族:</span><span>{{ people.nation }}</span>
+              </div>
+              <div class="line">
+                <span>婚姻状况:</span><span>{{ people.marriageStatus }}</span>
+              </div>
+              <div class="line">
+                <span>籍贯:</span><span>{{ people.nativeName }}</span>
+              </div>
+              <div class="line">
+                <span>证件类型:</span><span>{{ people.idType }}</span>
+              </div>
+              <div class="line">
+                <span>证件号码:</span><span>{{ people.idCard }}</span>
+              </div>
+              <div class="line">
+                <span>学历:</span><span>{{ people.educationLevel }}</span>
+              </div>
+              <div class="line">
+                <span>所属户主:</span><span>{{ people.name }}</span>
+              </div>
+              <div class="line">
+                <span>入住人员数量:</span><span>{{ people.familyMember.length }}</span>
+              </div>
               <div class="line"><span>入住时间:</span><span>2015年6月</span></div>
-              <div class="extra"><span>备注:</span><span>2015年6月</span></div>
+              <div class="extra">
+                <span>备注:</span><span>{{ people.remark }}</span>
+              </div>
             </div>
           </div>
         </div>
@@ -51,32 +80,18 @@
               <span class="span3">联系方式</span>
               <span class="span4">身份证号</span>
             </div>
-            <div class="common">
-              <span class="span1">胡骏杰</span>
-              <span class="span2">业主</span>
-              <span class="span2">男</span>
-              <span class="span3">158 3720 2761</span>
-              <span class="span4">42019604345891453</span>
-            </div>
-            <div class="common">
-              <span class="span1">胡骏杰</span>
-              <span class="span2">业主</span>
-              <span class="span2">男</span>
-              <span class="span3">158 3720 2761</span>
-              <span class="span4">42019604345891453</span>
-            </div>
-            <div class="common">
-              <span class="span1">胡骏杰</span>
-              <span class="span2">业主</span>
-              <span class="span2">男</span>
-              <span class="span3">158 3720 2761</span>
-              <span class="span4">42019604345891453</span>
+            <div class="common" v-for="(family, key) in people.familyMember" :key="key">
+              <span class="span1">{{ family.name }}</span>
+              <span class="span2">{{ family.role }}</span>
+              <span class="span2">{{ family.sex }}</span>
+              <span class="span3">{{ family.tel }}</span>
+              <span class="span4">{{ family.idCard }}</span>
             </div>
           </div>
         </div>
       </tab>
     </tabs>
-    <div class="close"></div>
+    <div class="close" @click.stop="close"></div>
   </div>
 </template>
 
@@ -90,19 +105,12 @@ Vue.component('tab', Tab)
 export default {
   name: 'People-Info',
   props: ['description', 'customStyle', 'config'],
-  data: function() {
-    return {
-      currentTabIndex: 0
-    }
-  },
-  computed: {
-    pageData: function() {
-      return this.props.config[this.currentTabIndex]
-    }
-  },
   methods: {
     tabChanged(selectedTab) {
       console.log('Tab changed to:' + selectedTab.tab.name)
+    },
+    close() {
+      this.$emit('close')
     }
   }
 }

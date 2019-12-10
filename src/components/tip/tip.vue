@@ -1,6 +1,6 @@
 <template>
   <div class="tip" :style="customStyle">
-    <span class="message">{{description}}</span>
+    <span class="message">{{ description }}</span>
   </div>
 </template>
 
@@ -25,7 +25,7 @@ export default {
   background: url(../../assets/tip.png) center/100% no-repeat;
   .message {
     position: absolute;
-    top: 4px;
+    top: 8px;
     left: 130px;
     transform: translateX(-50%);
     color: white;
