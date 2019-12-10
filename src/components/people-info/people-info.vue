@@ -36,7 +36,9 @@
               </div>
               <div class="line">
                 <span>物业费缴纳:</span>
-                <span>{{ people.isPayedPropertyFee }}</span>
+                <span
+                  :style="{color:people.isPayedPropertyFee?'#06D8EB':'red'}"
+                >{{ people.isPayedPropertyFee?'已缴':'未缴' }}</span>
               </div>
             </div>
           </div>

@@ -71,7 +71,63 @@ export default {
           mobile: '15926339107',
           socialName: '育才嘉苑',
           unit: '二期6栋3单元',
-          isPayedPropertyFee: false,
+          isPayedPropertyFee: true,
+          nation: '汉',
+          marriageStatus: '未婚',
+          nativeName: '湖北武汉',
+          idType: '身份证',
+          idCard: '421302199501141680',
+          educationLevel: '硕士',
+          remark: '暂无',
+          familyMember: [
+            {
+              name: '1',
+              role: 'child',
+              sex: '男',
+              tel: '15926339107',
+              idCard: '45789423554561522'
+            }
+          ]
+        },
+        {
+          location: '3栋3单元303',
+          img:
+            'https://upload.jianshu.io/users/upload_avatars/6813214/9d36bb4a-f514-4d40-8ab8-f885bed1ac54.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/120/h/120',
+          name: '风之化身2',
+          sex: '男',
+          birthday: '2019年01月',
+          mobile: '15926339107',
+          socialName: '育才嘉苑',
+          unit: '二期6栋3单元',
+          isPayedPropertyFee: true,
+          nation: '汉',
+          marriageStatus: '未婚',
+          nativeName: '湖北武汉',
+          idType: '身份证',
+          idCard: '421302199501141680',
+          educationLevel: '硕士',
+          remark: '暂无',
+          familyMember: [
+            {
+              name: '1',
+              role: 'child',
+              sex: '男',
+              tel: '15926339107',
+              idCard: '45789423554561522'
+            }
+          ]
+        },
+        {
+          location: '3栋3单元304',
+          img:
+            'https://upload.jianshu.io/users/upload_avatars/6813214/9d36bb4a-f514-4d40-8ab8-f885bed1ac54.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/120/h/120',
+          name: '风之化身2',
+          sex: '男',
+          birthday: '2019年01月',
+          mobile: '15926339107',
+          socialName: '育才嘉苑',
+          unit: '二期6栋3单元',
+          isPayedPropertyFee: true,
           nation: '汉',
           marriageStatus: '未婚',
           nativeName: '湖北武汉',
