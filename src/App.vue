@@ -11,6 +11,7 @@
         v-on:close="handleClose($event)"
         :description="description"
         :customStyle="style"
+        :config="peopleInfo"
       ></component>
     </section>
   </div>
@@ -30,7 +31,23 @@ export default {
       visible: false,
       style: '',
       description: '',
-      currentComponent: 'people-info'
+      currentComponent: 'people-info',
+      peopleInfo: [
+        {
+          location: '3栋3单元301',
+          owner: {
+            img:
+              'https://upload.jianshu.io/users/upload_avatars/6813214/9d36bb4a-f514-4d40-8ab8-f885bed1ac54.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/120/h/120',
+            name: '风之化身',
+            sex: '男',
+            birthDate: '2019年01月',
+            mobile: '15926339107',
+            community: '育才嘉苑',
+            unit: '二期6栋3单元',
+            isPayedPropertyFee: false
+          }
+        }
+      ]
     }
   },
 

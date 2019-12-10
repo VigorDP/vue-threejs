@@ -1,6 +1,6 @@
 <template>
   <div class="people" :style="customStyle">
-    <tabs :options="{ useUrlFragment: false }" @clicked="tabClicked" @changed="tabChanged">
+    <tabs :options="{ useUrlFragment: false }" @changed="tabChanged">
       <tab name="First tab">
         <div class="top">
           <!-- 左边 -->
@@ -16,7 +16,7 @@
               <div class="line"><span>业主姓名:</span><span>风之化身 </span></div>
               <div class="line"><span>性别:</span><span>男</span></div>
               <div class="line"><span>出生日期:</span><span>1966年5月</span></div>
-              <div class="line"><span>手机号:</span><span>158 3720 2761</span></div>
+              <div class="line"><span>手机号:</span><span>15837202761</span></div>
               <div class="line"><span>所属小区:</span><span>育才嘉苑</span></div>
               <div class="line"><span>单元号:</span><span>二期6栋3单元</span></div>
               <div class="line"><span>物业费缴纳:</span><span>已交</span></div>
@@ -25,19 +25,56 @@
           <div class="center"></div>
           <div class="right">
             <div class="basic_info">
-              <div class="line"><span>业主姓名:</span><span>风之化身 </span></div>
-              <div class="line"><span>性别:</span><span>男</span></div>
-              <div class="line"><span>出生日期:</span><span>1966年5月</span></div>
-              <div class="line"><span>手机号:</span><span>158 3720 2761</span></div>
-              <div class="line"><span>所属小区:</span><span>育才嘉苑</span></div>
-              <div class="line"><span>单元号:</span><span>二期6栋3单元</span></div>
-              <div class="line"><span>物业费缴纳:</span><span>已交</span></div>
+              <div class="line"><span>民族:</span><span>汉</span></div>
+              <div class="line"><span>婚姻状况:</span><span>已婚</span></div>
+              <div class="line"><span>籍贯:</span><span>湖北武汉</span></div>
+              <div class="line"><span>证件类型:</span><span>身份证</span></div>
+              <div class="line"><span>证件号码:</span><span>42089673859436768</span></div>
+              <div class="line"><span>学历:</span><span>博士</span></div>
+              <div class="line"><span>所属户主:</span><span>胡骏杰</span></div>
+              <div class="line"><span>入住人员数量:</span><span>5</span></div>
+              <div class="line"><span>入住时间:</span><span>2015年6月</span></div>
+              <div class="extra"><span>备注:</span><span>2015年6月</span></div>
             </div>
           </div>
         </div>
-        <div class="bottom"></div>
+        <div class="bottom">
+          <div class="left">
+            <img src="../../assets/people-info/house_info.png" alt="" />
+            <span>家庭信息</span>
+          </div>
+          <div class="right2">
+            <div class="header common">
+              <span class="span1">姓名</span>
+              <span class="span2">关系</span>
+              <span class="span2">性别</span>
+              <span class="span3">联系方式</span>
+              <span class="span4">身份证号</span>
+            </div>
+            <div class="common">
+              <span class="span1">胡骏杰</span>
+              <span class="span2">业主</span>
+              <span class="span2">男</span>
+              <span class="span3">158 3720 2761</span>
+              <span class="span4">42019604345891453</span>
+            </div>
+            <div class="common">
+              <span class="span1">胡骏杰</span>
+              <span class="span2">业主</span>
+              <span class="span2">男</span>
+              <span class="span3">158 3720 2761</span>
+              <span class="span4">42019604345891453</span>
+            </div>
+            <div class="common">
+              <span class="span1">胡骏杰</span>
+              <span class="span2">业主</span>
+              <span class="span2">男</span>
+              <span class="span3">158 3720 2761</span>
+              <span class="span4">42019604345891453</span>
+            </div>
+          </div>
+        </div>
       </tab>
-      <tab id="second-tab" name="Default tab">Second tab content</tab>
     </tabs>
     <div class="close"></div>
   </div>
@@ -52,11 +89,18 @@ Vue.component('tab', Tab)
 
 export default {
   name: 'People-Info',
-  props: ['description', 'customStyle'],
+  props: ['description', 'customStyle', 'config'],
+  data: function() {
+    return {
+      currentTabIndex: 0
+    }
+  },
+  computed: {
+    pageData: function() {
+      return this.props.config[this.currentTabIndex]
+    }
+  },
   methods: {
-    tabClicked(selectedTab) {
-      console.log('Current tab re-clicked:' + selectedTab.tab.name)
-    },
     tabChanged(selectedTab) {
       console.log('Tab changed to:' + selectedTab.tab.name)
     }
@@ -69,8 +113,9 @@ export default {
 .people {
   position: absolute;
   width: 640px;
-  height: 500px;
-  background: url(../../assets/people-info/main_bg.png) center/100% no-repeat;
+  height: auto;
+  min-height: 500px;
+  background: url(../../assets/people-info/main_bg.png) center/100% 100% no-repeat;
   .tabs-component {
     width: 100%;
     height: 100%;
@@ -101,15 +146,13 @@ export default {
       }
     }
     .tabs-component-panels {
-      border: solid 1px #ddd;
       border-radius: 6px;
-      margin-top: 10px;
       width: 100%;
-      height: 400px;
+      min-height: 400px;
       .tabs-component-panel {
+        padding-top: 30px;
         .top {
           display: flex;
-          align-items: center;
           justify-content: space-around;
           height: 280px;
           .center {
@@ -120,12 +163,10 @@ export default {
           .left,
           .right {
             width: 280px;
-            align-self: flex-start;
             .avatar {
               display: flex;
               align-items: center;
               justify-content: center;
-              margin-top: 30px;
               img {
                 width: 90px;
                 height: 90px;
@@ -145,24 +186,104 @@ export default {
               }
             }
             .basic_info {
-              // background: yellow;
               width: 80%;
               margin: 30px auto 0;
               .line {
                 display: flex;
                 align-items: center;
-                justify-content: space-between;
-                margin: 4px 0;
+                margin: 7px 0;
                 span {
                   color: white;
-                  flex: 1;
+                  width: 102px;
+                  letter-spacing: 1px;
+                  &:first-child {
+                    color: rgba(204, 205, 213, 1);
+                  }
+                }
+              }
+              .extra {
+                width: 268px;
+                height: 45px;
+                background: rgba(93, 98, 118, 0.5);
+                border: 1px solid rgba(112, 126, 135, 1);
+                border-radius: 3px;
+                padding-top: 6px;
+                padding-left: 3px;
+                span {
+                  color: rgba(204, 205, 213, 1);
+                  letter-spacing: 2px;
+                  margin-right: 3px;
                 }
               }
             }
           }
           .right {
             flex: 1;
-            border: 1px solid red;
+            .basic_info {
+              margin-top: 0;
+              .line {
+                margin: 9px 0;
+                span {
+                  &:first-child {
+                    max-width: 102px;
+                  }
+                }
+              }
+            }
+            // border: 1px solid red;
+          }
+        }
+        .bottom {
+          min-height: 94px;
+          display: flex;
+          padding: 0 25px;
+          .left {
+            position: relative;
+            height: 94px;
+            img {
+              width: 76px;
+              height: 94px;
+            }
+            span {
+              position: absolute;
+              width: 76px;
+              text-align: center;
+              bottom: 6px;
+              left: 0;
+              color: rgba(189, 242, 246, 1);
+            }
+          }
+          .right2 {
+            width: 460px;
+            margin-left: 24px;
+
+            .common {
+              display: flex;
+              justify-content: space-around;
+              height: 25px;
+              line-height: 25px;
+
+              &.header {
+                background: rgba(0, 235, 238, 0.3);
+              }
+              span {
+                color: rgba(189, 242, 246, 1);
+                flex: 1;
+                text-align: center;
+                &.span1 {
+                  max-width: 42px;
+                }
+                &.span2 {
+                  max-width: 28px;
+                }
+                &.span3 {
+                  max-width: 100px;
+                }
+                &.span4 {
+                  max-width: 140px;
+                }
+              }
+            }
           }
         }
       }
