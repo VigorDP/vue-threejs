@@ -1,6 +1,6 @@
 import BaseThree from './core/BaseThree'
 import Detector from './utils/detector'
-import { Modal } from 'ant-design-vue'
+// import { Modal } from 'ant-design-vue'
 import emitter from '../../common/event-emitter'
 // 全局配置
 import Config from './config'
@@ -8,7 +8,7 @@ import Config from './config'
 export default class Main extends BaseThree {
   constructor(container) {
     super(container)
-    this.showWelComeMessage()
+    // this.showWelComeMessage()
     this.loadAllObjs()
     this.timer = null // 区分单击和双击事件的关键
     if (!Detector.webgl) {
@@ -193,6 +193,7 @@ export default class Main extends BaseThree {
 
       // 初始化事件
       this.initEvent()
+      emitter.emit('model-loading-finished')
     })
   }
 

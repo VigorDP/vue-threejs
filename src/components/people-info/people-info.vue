@@ -137,6 +137,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
 .people {
+  font-size: 14px;
   position: absolute;
   width: 640px;
   height: auto;

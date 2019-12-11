@@ -150,6 +150,7 @@ export default {
   },
 
   mounted() {
+    this.$loading.show('3D社区构建中，请稍后...')
     emitter.on('show-building', (obj, position) => {
       // this.showDrawer(obj)
       this.style = `top:${position[1]}px;left:${position[0]}px`
@@ -165,6 +166,10 @@ export default {
     })
     emitter.on('hide-all-infoPanel', _ => {
       this.visible = false
+    })
+    emitter.once('model-loading-finished', _ => {
+      this.$loading.show('构建完毕，请使用！')
+      this.$loading.hide(2000)
     })
   },
 
