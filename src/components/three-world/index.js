@@ -146,11 +146,11 @@ export default class Main extends BaseThree {
       // this.positionAnimate(obj4, position4, 0)
       obj4.name = `building_high_1`
       // 5、加载建筑-白色高2
-      const obj5 = await this.loadObj(Config.obj.group_high_building_num8)
+      const obj5 = await this.loadObj(Config.obj.building8_unit3)
       obj5.position.set(40, -0, 50)
       // const position5 = [40, 0, 50]
       // this.positionAnimate(obj5, position5, 0)
-      obj5.name = `building_high_2`
+      obj5.name = `building_high_21111`
       // 6、加载建筑-红色高1
       const obj6 = await this.loadObj(Config.obj.group_low_building1)
       obj6.position.set(-180, -0, 50)

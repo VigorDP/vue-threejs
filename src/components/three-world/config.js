@@ -43,6 +43,11 @@ export default {
       level: 'one',
       childName: 'floor'
     },
+    building8_unit3: {
+      path: '/3d/one/building8_unit3/building6_unit_3',
+      level: 'one',
+      childName: 'floor'
+    },
     group_low_building2: {
       path: '/3d/one/low_building2/low_building2',
       level: 'one',

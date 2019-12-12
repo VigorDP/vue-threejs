@@ -158,7 +158,7 @@ export default {
       // 视频监控
       if (obj.name.startsWith('camera')) {
         this.currentComponent = 'rtsp-video'
-      } else if (obj.name.startsWith('floor')) {
+      } else if (obj.name.indexOf('floor') !== -1) {
         this.currentComponent = 'people-info'
       } else {
         this.currentComponent = 'tip'
