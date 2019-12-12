@@ -39,7 +39,7 @@ export default {
       childName: 'floor'
     },
     group_low_building1: {
-      path: '/3d/one/low_building1/low_building1',
+      path: '/3d/one/low_building_1/low_building_1',
       level: 'one',
       childName: 'floor'
     },
@@ -54,7 +54,7 @@ export default {
       childName: 'floor'
     },
     barrier: {
-      path: '/3d/one/barrier/barrier',
+      path: '/3d/one/barrier6_merge/barrier6_merge',
       level: 'one'
     },
     parking: {

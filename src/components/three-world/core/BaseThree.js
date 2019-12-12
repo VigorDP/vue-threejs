@@ -26,13 +26,13 @@ const canShowObjName = [
   'building_relic', // 别墅
   'floor_common', // 楼层
   'room', //房间
-  'building_high_', // 停车场
-  'building_low_', // 出口道闸
-  'barrier_gate_in', // 入口道闸
-  'barrier_gate_out', // 出口道闸
+  'building_high_',
+  'building_low_',
+  'barrier_gate', // 入口道闸
   'charging_pile', // 充电桩
   'camera', // 摄像头
-  'access_control_machine' // 门禁
+  'machine', // 门禁
+  'layout' // 布局
 ]
 
 const canLoadChildName = [

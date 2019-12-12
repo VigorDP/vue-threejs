@@ -153,13 +153,15 @@ export default {
     this.$loading.show('3D社区构建中，请稍后...')
     emitter.on('show-building', (obj, position) => {
       // this.showDrawer(obj)
-      this.style = `top:${position[1]}px;left:${position[0]}px`
+      this.style = `top:${position[1]}px;left:${position[0] + 20}px`
       this.description = obj.name || '未知物品'
       // 视频监控
       if (obj.name.startsWith('camera')) {
         this.currentComponent = 'rtsp-video'
       } else if (obj.name.indexOf('floor') !== -1) {
         this.currentComponent = 'people-info'
+      } else if (obj.name.indexOf('layout') !== -1) {
+        this.currentComponent = ''
       } else {
         this.currentComponent = 'tip'
       }

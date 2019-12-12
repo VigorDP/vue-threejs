@@ -119,13 +119,14 @@
 <script>
 import Vue from 'vue'
 import { Tabs, Tab } from 'vue-tabs-component'
-
+import { edgeDetect } from '../mixins/edgeDetect'
 Vue.component('tabs', Tabs)
 Vue.component('tab', Tab)
 
 export default {
   name: 'People-Info',
   props: ['description', 'customStyle', 'config'],
+  mixins: [edgeDetect],
   methods: {
     close() {
       this.$emit('close')
@@ -143,6 +144,15 @@ export default {
   height: auto;
   min-height: 500px;
   background: url(../../assets/people-info/main_bg.png) center/100% 100% no-repeat;
+  &.transformY {
+    transform: translateY(-80%);
+  }
+  &.transformX {
+    transform: translateX(-120%);
+  }
+  &.transformXY {
+    transform: translateX(-120%) translateY(-80%);
+  }
   .tabs-component {
     width: 100%;
     height: 100%;

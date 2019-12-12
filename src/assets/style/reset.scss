@@ -87,6 +87,7 @@ figcaption {
 html,
 body {
   height: 100%;
+  overflow: hidden;
   width: 100%;
   font-family: PingFangSC-Regular, Microsoft Yahei, SimSun, SimHei;
   -webkit-tap-highlight-color: transparent; // 去除button,Input点击时的阴影,IOS私有

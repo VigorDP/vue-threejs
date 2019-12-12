@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import { edgeDetect } from '../mixins/edgeDetect'
+
 const VxgParam = {
   url: '',
   nmf_path: '/vxg/pnacl/Release/media_player.nmf',
@@ -24,6 +26,7 @@ const VxgParam = {
 export default {
   name: 'Rtsp-Video',
   props: ['videoUrl', 'playerId', 'customStyle', 'description'],
+  mixins: [edgeDetect],
   data: function() {
     return {
       player: null,
