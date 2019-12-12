@@ -87,8 +87,8 @@ export default class Main extends BaseThree {
 
   initEvent() {
     window.addEventListener('dblclick', this.enterObj.bind(this), false) // 双击进入选中物体
-    // window.addEventListener('mousemove', this.showObjInfo.bind(this), false) // 单击选中物体
     window.addEventListener('click', this.showObjInfo.bind(this), false) // 单击选中物体
+    window.addEventListener('touchstart', this.showObjInfo.bind(this), false) // 单击选中物体
 
     window.addEventListener(
       'mouseup',
@@ -146,7 +146,7 @@ export default class Main extends BaseThree {
       // this.positionAnimate(obj4, position4, 0)
       obj4.name = `building_high_1`
       // 5、加载建筑-白色高2
-      const obj5 = await this.loadObj(Config.obj.building8_unit3)
+      const obj5 = await this.loadObj(Config.obj.group_high_building_num8)
       obj5.position.set(40, -0, 50)
       // const position5 = [40, 0, 50]
       // this.positionAnimate(obj5, position5, 0)

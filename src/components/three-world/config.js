@@ -34,7 +34,7 @@ export default {
       childName: 'floor'
     },
     group_high_building_num8: {
-      path: '/3d/one/high_building_num8/high_building_num8',
+      path: '/3d/one/high_building_num8_spr/high_building_8_spr',
       level: 'one',
       childName: 'floor'
     },
