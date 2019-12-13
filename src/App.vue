@@ -12,6 +12,7 @@
         :description="description"
         :customStyle="style"
         :config="peopleInfo"
+        :entranceGuardInfo="entranceGuardInfo"
       ></component>
     </section>
   </div>
@@ -145,6 +146,24 @@ export default {
               idCard: '45789423554561522'
             }
           ]
+        }
+      ],
+      entranceGuardInfo: [
+        {
+          location: '3单元门禁A',
+          type: 'machine'
+        },
+        {
+          location: '3单元电梯A',
+          type: 'car'
+        },
+        {
+          location: '3单元电梯B',
+          type: 'car'
+        },
+        {
+          location: '3单元货梯',
+          type: 'car'
         }
       ]
     }
