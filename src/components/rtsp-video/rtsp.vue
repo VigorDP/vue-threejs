@@ -105,7 +105,7 @@ export default {
     height: 40px;
     line-height: 40px;
     justify-content: space-between;
-    background: url(../../assets/vxg-player/header_bg.png) center/100% 100% no-repeat;
+    background: url(../../assets/imgs/header_bg.png) center/100% 100% no-repeat;
     .left {
       position: relative;
       left: 2.5em;
@@ -114,10 +114,10 @@ export default {
     }
     .right {
       width: 40px;
-      background: url(../../assets/close_normal.png) center/100% 100% no-repeat;
+      background: url(../../assets/imgs/close_normal.png) center/100% 100% no-repeat;
       &:hover {
         cursor: pointer;
-        background: url(../../assets/close_hover.png) center/100% 100% no-repeat;
+        background: url(../../assets/imgs/close_hover.png) center/100% 100% no-repeat;
       }
     }
   }

@@ -3,12 +3,12 @@
     <!-- 3d 组件 -->
     <ThreeWorld />
     <!-- 信息展示面板 -->
-    <section class="infoContainer">
+    <section class="infoContainer" @click.stop>
       <component
         v-bind:is="currentComponent"
         playerId="id"
         videoUrl="rtsp://184.72.239.149/vod/mp4:BigBuckBunny_115k.mov"
-        v-on:close="handleClose($event)"
+        @close="handleClose($event)"
         :description="description"
         :customStyle="style"
         :config="peopleInfo"
@@ -22,6 +22,7 @@ import ThreeWorld from './components/three-world/ThreeWorld.vue'
 import Tip from './components/tip/tip.vue'
 import RtspVideo from './components/rtsp-video/rtsp.vue'
 import PeopleInfo from './components/people-info/people-info.vue'
+import EntranceGuardInfo from './components/entrance-guard-info/entrance-guard-info.vue'
 
 import emitter from './common/event-emitter'
 export default {
@@ -162,6 +163,8 @@ export default {
         this.currentComponent = 'people-info'
       } else if (obj.name.indexOf('layout') !== -1) {
         this.currentComponent = ''
+      } else if (obj.name.indexOf('machine') !== -1) {
+        this.currentComponent = 'entrance-guard-info'
       } else {
         this.currentComponent = 'tip'
       }
@@ -199,7 +202,8 @@ export default {
     ThreeWorld,
     Tip,
     RtspVideo,
-    PeopleInfo
+    PeopleInfo,
+    EntranceGuardInfo
   }
 }
 </script>

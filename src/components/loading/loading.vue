@@ -2,7 +2,7 @@
   <transition name="fade">
     <div class="loading" v-if="show">
       <div class="content">
-        <img src="../../assets/loading.gif" alt />
+        <img src="../../assets/imgs/loading.gif" alt />
         <span class="message">{{message}}</span>
       </div>
     </div>

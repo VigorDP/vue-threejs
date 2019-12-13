@@ -22,7 +22,7 @@ export default {
   width: 200px;
   height: 50px;
   transform: translateY(-100%);
-  background: url(../../assets/tip.png) center/100% no-repeat;
+  background: url(../../assets/imgs/tip.png) center/100% no-repeat;
   .message {
     position: absolute;
     top: 8px;
