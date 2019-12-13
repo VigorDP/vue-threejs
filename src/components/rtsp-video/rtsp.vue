@@ -1,5 +1,5 @@
 <template>
-  <div class="container" v-if="show" :style="customStyle">
+  <div class="container" :style="customStyle" @click.stop>
     <div class="head">
       <div class="left">{{ description }}-视频监控</div>
       <div class="right" @click.stop="close"></div>
@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { edgeDetect } from '../mixins/edgeDetect'
+import { edgeDetect, commonMethods } from '../mixins'
 
 const VxgParam = {
   url: '',
@@ -26,11 +26,10 @@ const VxgParam = {
 export default {
   name: 'Rtsp-Video',
   props: ['videoUrl', 'playerId', 'customStyle', 'description'],
-  mixins: [edgeDetect],
+  mixins: [edgeDetect, commonMethods],
   data: function() {
     return {
-      player: null,
-      show: true
+      player: null
     }
   },
   mounted() {
@@ -61,6 +60,10 @@ export default {
       this.player = window.vxgplayer(this.playerId, VxgParam)
     },
     initPlayer() {
+      if (!this.player) {
+        console.log('VXGPlayer 初始化失败！')
+        return
+      }
       this.player.onReadyStateChange(onreadyState => {
         console.log('player LOADED: versionPLG=' + this.player.versionPLG() + ' versionAPP=' + this.player.versionAPP())
       })
@@ -70,7 +73,6 @@ export default {
       this.player.onError(err => {
         console.error('初始化vxg出错：', err)
       })
-
       this.player.onBandwidthError(res => {
         console.log(res.error())
       })
@@ -78,14 +80,10 @@ export default {
     playVideo(videoUrl) {
       this.player.src(videoUrl)
       this.player.play()
-    },
-    close() {
-      this.show = false
-      this.$emit('close')
     }
   },
 
-  unmount: function() {
+  beforeDestroy: function() {
     if (this.player) {
       this.player.dispose()
       this.player = null

@@ -14,7 +14,7 @@ const edgeDetect = {
       const clientWidth = window.innerWidth
       const clientHeight = window.innerHeight
       if (top + height > clientHeight) {
-        containerDom.style.cssText += `top:${clientHeight - height}px`
+        containerDom.style.cssText += `top:${clientHeight - height - 40}px`
       }
       if (left + width > clientWidth) {
         containerDom.style.cssText += 'transform:translateX(-110%)'
@@ -26,4 +26,12 @@ const edgeDetect = {
   }
 }
 
-export { edgeDetect }
+const commonMethods = {
+  methods: {
+    close() {
+      this.$emit('close')
+    }
+  }
+}
+
+export { edgeDetect, commonMethods }

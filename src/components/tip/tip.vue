@@ -5,12 +5,9 @@
 </template>
 
 <script>
-import { edgeDetect } from '../mixins/edgeDetect'
-
 export default {
   name: 'Tip',
   props: ['description', 'customStyle']
-  // mixins: [edgeDetect],
 }
 </script>
 

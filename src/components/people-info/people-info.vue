@@ -1,6 +1,6 @@
 <template>
   <div class="people" :style="customStyle" @click.stop>
-    <tabs :options="{ useUrlFragment: false }">
+    <tabs :options="{ useUrlFragment: false }" cache-lifetime="0">
       <tab v-for="(people, key) in config" :key="key" :name="people.location">
         <div class="top">
           <!-- 左边 -->
@@ -119,19 +119,14 @@
 <script>
 import Vue from 'vue'
 import { Tabs, Tab } from 'vue-tabs-component'
-import { edgeDetect } from '../mixins/edgeDetect'
+import { edgeDetect, commonMethods } from '../mixins'
 Vue.component('tabs', Tabs)
 Vue.component('tab', Tab)
 
 export default {
   name: 'People-Info',
   props: ['description', 'customStyle', 'config'],
-  mixins: [edgeDetect],
-  methods: {
-    close() {
-      this.$emit('close')
-    }
-  }
+  mixins: [edgeDetect, commonMethods]
 }
 </script>
 
