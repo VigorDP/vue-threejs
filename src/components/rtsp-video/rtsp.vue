@@ -4,12 +4,13 @@
       <div class="left">{{ description }}-视频监控</div>
       <div class="right" @click.stop="close"></div>
     </div>
-    <div :id="playerId" class="vxg-container" ref="vxgplayer"></div>
+    <rtsp :playerId="playerId" :videoUrl="videoUrl"></rtsp>
   </div>
 </template>
 
 <script>
 import { edgeDetect, commonMethods } from '../mixins'
+import Rtsp from '../rtsp-base/rtsp.vue'
 
 const VxgParam = {
   url: '',
@@ -27,68 +28,7 @@ export default {
   name: 'Rtsp-Video',
   props: ['videoUrl', 'playerId', 'customStyle', 'description'],
   mixins: [edgeDetect, commonMethods],
-  data: function() {
-    return {
-      player: null
-    }
-  },
-  mounted() {
-    // 异步加载 vxgplayer 插件
-    let script = document.createElement('script')
-    script.setAttribute('src', '/vxg/vxgplayer.min.js')
-    script.setAttribute('type', 'text/javascript')
-    document.head.appendChild(script)
-    const that = this
-    script.onload = function() {
-      that.initVxgPlugin()
-      that.initPlayer()
-      that.playVideo(that.videoUrl)
-    }
-
-    let style = document.createElement('link')
-    style.setAttribute('type', 'text/css')
-    style.setAttribute('rel', 'stylesheet')
-    style.setAttribute('href', '/vxg/vxgplayer.min.css')
-    document.head.appendChild(style)
-  },
-  methods: {
-    initVxgPlugin() {
-      if (!this.videoUrl || !this.playerId) {
-        alert(this.name + '请传入 videoUrl 和 playerId')
-        return
-      }
-      this.player = window.vxgplayer(this.playerId, VxgParam)
-    },
-    initPlayer() {
-      if (!this.player) {
-        console.log('VXGPlayer 初始化失败！')
-        return
-      }
-      this.player.onReadyStateChange(onreadyState => {
-        console.log('player LOADED: versionPLG=' + this.player.versionPLG() + ' versionAPP=' + this.player.versionAPP())
-      })
-      this.player.onStateChange(readyState => {
-        console.log('NEW READY STATE: ' + readyState)
-      })
-      this.player.onError(err => {
-        console.error('初始化vxg出错：', err)
-      })
-      this.player.onBandwidthError(res => {
-        console.log(res.error())
-      })
-    },
-    playVideo(videoUrl) {
-      this.player.src(videoUrl)
-      this.player.play()
-    }
-  },
-
-  beforeDestroy: function() {
-    if (this.player) {
-      this.player.dispose()
-      this.player = null
-    }
-  }
+  components: { Rtsp }
 }
 </script>
 

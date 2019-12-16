@@ -24,8 +24,8 @@ import Tip from './components/tip/tip.vue'
 import RtspVideo from './components/rtsp-video/rtsp.vue'
 import PeopleInfo from './components/people-info/people-info.vue'
 import EntranceGuardInfo from './components/entrance-guard-info/entrance-guard-info.vue'
-
 import emitter from './common/event-emitter'
+import Images from './common/imgs.js'
 export default {
   name: 'root',
   data() {
@@ -151,19 +151,71 @@ export default {
       entranceGuardInfo: [
         {
           location: '3单元门禁A',
-          type: 'machine'
+          icon: Images.machine,
+          type: 'machine',
+          table: [
+            {
+              index: 1,
+              name: '风之化身',
+              role: '业主',
+              sex: '男',
+              openDoorWay: '刷卡',
+              time: '2019-09-20 12:30:20'
+            },
+            {
+              index: 1,
+              name: '风之化身',
+              role: '业主',
+              sex: '男',
+              openDoorWay: '刷卡',
+              time: '2019-09-20 12:30:20'
+            },
+            {
+              index: 1,
+              name: '风之化身',
+              role: '业主',
+              sex: '男',
+              openDoorWay: '刷卡',
+              time: '2019-09-20 12:30:20'
+            },
+            {
+              index: 1,
+              name: '风之化身',
+              role: '业主',
+              sex: '男',
+              openDoorWay: '刷卡',
+              time: '2019-09-20 12:30:20'
+            },
+            {
+              index: 1,
+              name: '风之化身',
+              role: '业主',
+              sex: '男',
+              openDoorWay: '刷卡',
+              time: '2019-09-20 12:30:20'
+            },
+            {
+              index: 1,
+              name: '风之化身',
+              role: '业主',
+              sex: '男',
+              openDoorWay: '刷卡',
+              time: '2019-09-20 12:30:20'
+            },
+            {
+              index: 1,
+              name: '风之化身',
+              role: '业主',
+              sex: '男',
+              openDoorWay: '刷卡',
+              time: '2019-09-20 12:30:20'
+            }
+          ]
         },
         {
-          location: '3单元电梯A',
-          type: 'car'
-        },
-        {
-          location: '3单元电梯B',
-          type: 'car'
-        },
-        {
-          location: '3单元货梯',
-          type: 'car'
+          location: '电梯A',
+          icon: Images.elevator,
+          type: 'elevator'
         }
       ]
     }
@@ -183,6 +235,136 @@ export default {
       } else if (obj.name.indexOf('layout') !== -1) {
         this.currentComponent = ''
       } else if (obj.name.indexOf('machine') !== -1) {
+        this.currentComponent = 'entrance-guard-info'
+      } else if (obj.name.indexOf('barrier') !== -1) {
+        this.entranceGuardInfo = [
+          {
+            location: '出口道闸',
+            icon: Images.car,
+            type: 'machine',
+            table: [
+              {
+                index: 1,
+                name: '风之化身',
+                role: '业主',
+                sex: '男',
+                openDoorWay: '刷卡',
+                time: '2019-09-20 12:30:20'
+              },
+              {
+                index: 1,
+                name: '风之化身',
+                role: '业主',
+                sex: '男',
+                openDoorWay: '刷卡',
+                time: '2019-09-20 12:30:20'
+              },
+              {
+                index: 1,
+                name: '风之化身',
+                role: '业主',
+                sex: '男',
+                openDoorWay: '刷卡',
+                time: '2019-09-20 12:30:20'
+              },
+              {
+                index: 1,
+                name: '风之化身',
+                role: '业主',
+                sex: '男',
+                openDoorWay: '刷卡',
+                time: '2019-09-20 12:30:20'
+              },
+              {
+                index: 1,
+                name: '风之化身',
+                role: '业主',
+                sex: '男',
+                openDoorWay: '刷卡',
+                time: '2019-09-20 12:30:20'
+              },
+              {
+                index: 1,
+                name: '风之化身',
+                role: '业主',
+                sex: '男',
+                openDoorWay: '刷卡',
+                time: '2019-09-20 12:30:20'
+              },
+              {
+                index: 1,
+                name: '风之化身',
+                role: '业主',
+                sex: '男',
+                openDoorWay: '刷卡',
+                time: '2019-09-20 12:30:20'
+              }
+            ]
+          },
+          {
+            location: '入口道闸',
+            icon: Images.car,
+            type: 'machine',
+            table: [
+              {
+                index: 1,
+                name: '风之化2',
+                role: '业主',
+                sex: '男',
+                openDoorWay: '刷卡',
+                time: '2019-09-20 12:30:20'
+              },
+              {
+                index: 1,
+                name: '风之化2',
+                role: '业主',
+                sex: '男',
+                openDoorWay: '刷卡',
+                time: '2019-09-20 12:30:20'
+              },
+              {
+                index: 1,
+                name: '风之化2',
+                role: '业主',
+                sex: '男',
+                openDoorWay: '刷卡',
+                time: '2019-09-20 12:30:20'
+              },
+              {
+                index: 1,
+                name: '风之化2',
+                role: '业主',
+                sex: '男',
+                openDoorWay: '刷卡',
+                time: '2019-09-20 12:30:20'
+              },
+              {
+                index: 1,
+                name: '风之化2',
+                role: '业主',
+                sex: '男',
+                openDoorWay: '刷卡',
+                time: '2019-09-20 12:30:20'
+              },
+              {
+                index: 1,
+                name: '风之化2',
+                role: '业主',
+                sex: '男',
+                openDoorWay: '刷卡',
+                time: '2019-09-20 12:30:20'
+              },
+              {
+                index: 1,
+                name: '风之化2',
+                role: '业主',
+                sex: '男',
+                openDoorWay: '刷卡',
+                time: '2019-09-20 12:30:20'
+              }
+            ]
+          }
+        ]
         this.currentComponent = 'entrance-guard-info'
       } else {
         this.currentComponent = 'tip'

@@ -1,69 +1,83 @@
 <template>
   <info-wrapper :customStyle="customStyle" @close="close">
-    <tabs :options="{ useUrlFragment: false }" cache-lifetime="0">
-      <tab class="panel" v-for="(people, key) in entranceGuardInfo" :key="key" :name="people.location">
+    <tabs :options="{ useUrlFragment: false }" cache-lifetime="0" @change="start" @click="start">
+      <tab class="panel" v-for="(machine, key) in entranceGuardInfo" :key="key" :name="machine.location">
         <div class="top-layout">
-          <!-- 左边 -->
           <div class="left">
-            <img src="../../assets/imgs/machine.png" alt />
+            <img :src="machine.icon" alt />
             <span>编号:01A</span>
           </div>
           <div class="right">
             <div class="basic_info">
               <div class="line">
                 <span>门禁状态:</span>
-                <span>{{ people.nation || '运行中' }}</span>
+                <span>{{ machine.nation || '运行中' }}</span>
               </div>
               <div class="line">
                 <span>所在位置:</span>
-                <span>{{ people.marriageStatus || '1单元东门' }}</span>
+                <span>{{ machine.marriageStatus || '1单元东门' }}</span>
               </div>
               <div class="line">
                 <span>使用年限:</span>
-                <span>{{ people.nativeName || '3.6年' }}</span>
+                <span>{{ machine.nativeName || '3.6年' }}</span>
               </div>
               <div class="line">
                 <span>维修时间:</span>
-                <span>{{ people.nativeName || '2019年10月22日' }}</span>
+                <span>{{ machine.nativeName || '2019年10月22日' }}</span>
               </div>
               <div class="line">
                 <span>维修人:</span>
-                <span>{{ people.nativeName || '李明国' + '136 2710 3866' }}</span>
+                <span>{{ machine.nativeName || '李明国' + '136 2710 3866' }}</span>
               </div>
             </div>
           </div>
         </div>
-        <div class="bottom-table-layout">
+        <div class="bottom-table-layout" v-if="machine.type === 'machine'">
           <div class="title">
             <span>近24小时开门信息</span>
             <img src="../../assets/imgs/right_line.png" alt />
           </div>
           <div class="table">
             <header>
-              <span>序号</span>
-              <span>姓名</span>
-              <span>角色</span>
-              <span>性别</span>
-              <span>开门方式</span>
+              <span class="width1">序号</span>
+              <span class="width2">姓名</span>
+              <span class="width3">角色</span>
+              <span class="width3">性别</span>
+              <span class="width4">开门方式</span>
               <span>时间</span>
             </header>
-            <section>
-              <swiper :options="swiperOption" class="swiper-class" ref="mySwiper">
-                <!-- slides -->
-                <swiper-slide>I'm Slide 1</swiper-slide>
-                <swiper-slide>I'm Slide 2</swiper-slide>
-                <swiper-slide>I'm Slide 3</swiper-slide>
-                <swiper-slide>I'm Slide 4</swiper-slide>
-                <swiper-slide>I'm Slide 5</swiper-slide>
-                <swiper-slide>I'm Slide 6</swiper-slide>
-                <swiper-slide>I'm Slide 7</swiper-slide>
-              </swiper>
-            </section>
+            <swiper
+              :options="swiperOption"
+              class="swiper-class"
+              ref="mySwiper"
+              :key="key"
+              @mouseenter.native="stop"
+              @mouseleave.native="start"
+            >
+              <swiper-slide v-for="i in Math.ceil(machine.table.length / 6)" :key="i">
+                <div
+                  class="table-line"
+                  v-for="(people, key) in machine.table.slice((i - 1) * 6, (i - 1) * 6 + 6)"
+                  :key="key"
+                  :index="i - 1"
+                >
+                  <span class="width1">{{ (i - 1) * 6 + key + 1 }}</span>
+                  <span class="width2">{{ people.name }}</span>
+                  <span class="width3">{{ people.role }}</span>
+                  <span class="width3">{{ people.sex }}</span>
+                  <span class="width4">{{ people.openDoorWay }}</span>
+                  <span>{{ people.time }}</span>
+                </div>
+              </swiper-slide>
+            </swiper>
           </div>
         </div>
-        <div class="bottom-elevator-layout">
+        <div class="bottom-elevator-layout" v-if="machine.type === 'elevator'">
           <div class="title">
             <span>电梯A监控画面</span>
+          </div>
+          <div class="video-wrap">
+            <rtsp :playerId="playerId" :videoUrl="videoUrl"></rtsp>
           </div>
         </div>
       </tab>
@@ -75,6 +89,8 @@
 import Vue from 'vue'
 import { Tabs, Tab } from 'vue-tabs-component'
 import InfoWrapper from '../info-wrapper/wrapper.vue'
+import Rtsp from '../rtsp-base/rtsp.vue'
+
 import { commonMethods } from '../mixins'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
@@ -82,29 +98,41 @@ import 'swiper/dist/css/swiper.css'
 Vue.component('tabs', Tabs)
 Vue.component('tab', Tab)
 
+const swiperOption = {
+  autoplay: true,
+  loop: true,
+  speed: 1000,
+  direction: 'vertical',
+  observer: true, //修改swiper自己或子元素时，自动初始化swiper
+  observeParents: true //修改swiper的父元素时，自动初始化swiper
+}
+
 export default {
   name: 'People-Info',
-  props: ['description', 'customStyle', 'entranceGuardInfo'],
+  props: ['description', 'customStyle', 'entranceGuardInfo', 'playerId', 'videoUrl'],
   mixins: [commonMethods],
-  data: function() {
-    return {
-      swiperOption: {
-        autoplay: 3000,
-        direction: 'vertical',
-        observeParents: true
-      }
+  beforeCreate() {
+    this.swiperOption = swiperOption
+  },
+  methods: {
+    stop: function() {
+      this.$refs.mySwiper.forEach(item => item.swiper.autoplay.stop())
+    },
+    start: function() {
+      this.$refs.mySwiper.forEach(item => item.swiper.autoplay.start())
     }
   },
   components: {
     InfoWrapper,
     swiper,
-    swiperSlide
+    swiperSlide,
+    Rtsp
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss" scoped>
+<style lang="scss">
 .panel {
   padding: 12px 35px !important;
   display: flex;
@@ -178,7 +206,6 @@ export default {
     .table {
       margin-top: 10px;
       width: 530px;
-      // border: 1px solid #000;
       header {
         width: 100%;
         height: 25px;
@@ -187,15 +214,55 @@ export default {
         align-items: center;
         justify-content: space-around;
         span {
-          flex: 1;
+          display: inline-block;
           color: rgba(204, 205, 209, 1);
           text-align: center;
+          &:last-child {
+            width: 126px;
+          }
         }
       }
-      section {
-        .swiper-class {
-          width: 100%;
-          height: 100%;
+
+      .width1 {
+        width: 34px;
+        text-align: center;
+      }
+      .width2 {
+        width: 54px;
+        text-align: center;
+      }
+      .width3 {
+        width: 27px;
+        text-align: center;
+      }
+      .width4 {
+        width: 55px;
+        text-align: center;
+      }
+
+      .swiper-class {
+        width: 100%;
+        height: 152px;
+        .table-line {
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+          font-size: 13px;
+          height: 13px;
+          font-family: Microsoft YaHei;
+          font-weight: 400;
+          margin-top: 12px;
+          span {
+            color: rgba(255, 255, 255, 1);
+            &:first-child {
+              width: 34px;
+              height: 18px;
+              line-height: 18px;
+              text-align: center;
+              background: rgba(0, 144, 146, 1);
+              border-radius: 9px;
+            }
+          }
         }
       }
     }
@@ -217,6 +284,15 @@ export default {
       img {
         height: 9px;
       }
+    }
+    .video-wrap {
+      padding-top: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 400px;
+      height: 215px;
+      transform: translateX(65px);
     }
   }
 }
