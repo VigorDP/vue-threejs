@@ -1,5 +1,6 @@
 # vue-threejs
 
+[在线预览](http://3d.huimeifeng.xyz)
 ## Project setup
 
 ```
